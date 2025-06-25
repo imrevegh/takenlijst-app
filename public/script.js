@@ -1069,8 +1069,23 @@ class TakenlijstApp {
      * Logout function - clears browser auth cache
      */
     logout() {
-        // Direct redirect to Google - no confirmations, no delays
-        window.location.replace('https://www.google.com');
+        // Firefox-specific auth clearing method
+        if (navigator.userAgent.toLowerCase().includes('firefox')) {
+            // For Firefox: open new tab with Google, close current
+            const newTab = window.open('https://www.google.com', '_blank');
+            if (newTab) {
+                window.close();
+            } else {
+                // Fallback if popup blocked
+                window.location.replace('https://logout:logout@' + window.location.host);
+                setTimeout(() => {
+                    window.location.replace('https://www.google.com');
+                }, 100);
+            }
+        } else {
+            // For other browsers: direct redirect
+            window.location.replace('https://www.google.com');
+        }
     }
 }
 
