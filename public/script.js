@@ -100,19 +100,53 @@ class TakenlijstApp {
     }
 
     /**
-     * Load tasks and categories from the server
+     * Load tasks and categories from the server with retry logic
      */
     async loadData() {
-        try {
-            const response = await fetch('/api/tasks');
-            const data = await response.json();
-            this.tasks = data.tasks || [];
-            this.categories = data.categories || {};
-            this.renderCategories();
-            this.renderTasks();
-        } catch (error) {
-            console.error('Server not running, attempting to start...', error);
-            await this.startServerAndRetry();
+        const maxRetries = 3;
+        let retryCount = 0;
+        
+        while (retryCount < maxRetries) {
+            try {
+                // Add timeout to prevent hanging after inactivity
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+                
+                const response = await fetch('/api/tasks', {
+                    signal: controller.signal,
+                    cache: 'no-cache', // Force fresh data after inactivity
+                    headers: {
+                        'Cache-Control': 'no-cache, no-store, must-revalidate',
+                        'Pragma': 'no-cache'
+                    }
+                });
+                
+                clearTimeout(timeoutId);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                this.tasks = data.tasks || [];
+                this.categories = data.categories || {};
+                this.renderCategories();
+                this.renderTasks();
+                return; // Success, exit retry loop
+                
+            } catch (error) {
+                retryCount++;
+                console.error(`Load attempt ${retryCount} failed:`, error.message);
+                
+                if (retryCount >= maxRetries) {
+                    console.error('Server not responding after multiple attempts');
+                    await this.startServerAndRetry();
+                    return;
+                }
+                
+                // Wait before retry (exponential backoff)
+                await new Promise(resolve => setTimeout(resolve, 1000 * retryCount));
+            }
         }
     }
 

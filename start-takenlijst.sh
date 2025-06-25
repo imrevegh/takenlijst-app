@@ -93,7 +93,12 @@ echo "📋 Your tasks will be saved locally in the 'data' folder"
 if [ "$USE_PM2" = true ]; then
     echo "⚡ Using PM2 for optimized performance..."
     pm2 delete takenlijst 2>/dev/null >/dev/null
-    pm2 start npm --name "takenlijst" -- start >/dev/null 2>&1 &
+    # Use ecosystem config for better performance
+    if [ -f "ecosystem.config.js" ]; then
+        pm2 start ecosystem.config.js >/dev/null 2>&1 &
+    else
+        pm2 start npm --name "takenlijst" -- start >/dev/null 2>&1 &
+    fi
     SERVER_START_PID=$!
 else
     echo "🐌 Using standard startup..."

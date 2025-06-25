@@ -13,10 +13,20 @@ const DATA_FILE = path.join(__dirname, 'data', 'tasks.json');
 
 // In-memory storage for production (Render doesn't persist files)
 let memoryTasks = null;
+let tasksCache = null;
+let cacheTimestamp = 0;
+const CACHE_DURATION = 30000; // 30 seconds cache
 
 app.use(compression()); // Enable gzip compression
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 app.use(cors());
+
+// Set server timeout for better performance after inactivity
+app.use((req, res, next) => {
+  req.setTimeout(30000); // 30 seconds request timeout
+  res.setTimeout(30000); // 30 seconds response timeout
+  next();
+});
 
 // Session configuration
 app.use(session({
@@ -71,10 +81,18 @@ async function ensureDataDir() {
   }
 }
 
-// Load tasks from JSON file or memory
+// Load tasks from JSON file or memory with caching
 async function loadTasks() {
+  // Check cache first for faster loading
+  const now = Date.now();
+  if (tasksCache && (now - cacheTimestamp) < CACHE_DURATION) {
+    return tasksCache;
+  }
+  
   // Return from memory in production if available
   if (process.env.NODE_ENV === 'production' && memoryTasks) {
+    tasksCache = memoryTasks;
+    cacheTimestamp = now;
     return memoryTasks;
   }
   
@@ -126,6 +144,10 @@ async function loadTasks() {
       }
     }
     
+    // Cache the loaded data
+    tasksCache = parsed;
+    cacheTimestamp = now;
+    
     return parsed;
   } catch (error) {
     const defaultData = { categories: { 'algemeen': { name: 'Algemeen', color: '#3498db', tasks: [] } }, tasks: [] };
@@ -133,6 +155,9 @@ async function loadTasks() {
     if (process.env.NODE_ENV === 'production') {
       memoryTasks = defaultData;
     }
+    // Cache default data too
+    tasksCache = defaultData;
+    cacheTimestamp = now;
     return defaultData;
   }
 }
@@ -140,6 +165,10 @@ async function loadTasks() {
 // Save tasks to JSON file
 async function saveTasks(data) {
   try {
+    // Clear cache when saving new data
+    tasksCache = null;
+    cacheTimestamp = 0;
+    
     // Store in memory for production (files don't persist on Render)
     if (process.env.NODE_ENV === 'production') {
       memoryTasks = data;
