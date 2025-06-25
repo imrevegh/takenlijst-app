@@ -8,78 +8,59 @@
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 </head>
 <body>
-    <!-- Mobile App Structure -->
-    <div class="app-container">
-        <!-- Header -->
-        <header class="app-header">
-            <button id="mobile-menu-toggle" class="menu-toggle" aria-label="Menu">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-            <h1 class="app-title">📝 Takenlijst</h1>
-            <div class="header-actions">
-                <button id="logout-btn" class="header-btn" title="Uitloggen">🚪</button>
-                <button id="dark-mode-toggle" class="header-btn" title="Dark mode">🌙</button>
-            </div>
-        </header>
+    <header>
+        <div class="header-left">
+            <button id="mobile-menu-toggle" class="mobile-menu-btn">☰</button>
+            <h1>📝 Takenlijst</h1>
+        </div>
+        <div class="header-controls">
+            <button id="logout-btn" class="btn-secondary">🚪 Uitloggen</button>
+            <button id="export-btn" class="btn-secondary">📤 Export</button>
+            <input type="file" id="import-file" accept=".json" style="display: none;">
+            <button id="import-btn" class="btn-secondary">📥 Import</button>
+            <button id="toggle-completed" class="btn-secondary">Verberg afgevinkte taken</button>
+            <button id="dark-mode-toggle" class="btn-secondary">🌙</button>
+        </div>
+    </header>
 
-        <!-- Mobile Sidebar Overlay -->
-        <div class="sidebar-overlay" id="sidebar-overlay"></div>
-        
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-content">
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">Categorieën</h3>
-                    <div class="category-form">
-                        <div class="input-group">
-                            <input type="text" id="new-category-input" placeholder="Nieuwe categorie..." class="category-input">
-                            <input type="color" id="category-color" value="#0078d4" class="color-picker">
-                            <button id="add-category-btn" class="add-btn">+</button>
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div class="category-section">
+                <h3>Categorieën</h3>
+                <div class="category-form">
+                    <input type="text" id="new-category-input" placeholder="Nieuwe categorie...">
+                    <input type="color" id="category-color" value="#0078d4">
+                    <button id="add-category-btn" class="btn-primary">+</button>
+                </div>
+                <div id="categories-list"></div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="task-area">
+                <div class="task-input-section">
+                    <div class="task-form">
+                        <textarea id="task-input" placeholder="Wat wil je vandaag doen?"></textarea>
+                        <div class="task-form-controls">
+                            <select id="task-category">
+                                <option value="algemeen">Algemeen</option>
+                            </select>
+                            <button id="add-task-btn" class="btn-primary">Taak toevoegen</button>
                         </div>
                     </div>
-                    <div id="categories-list" class="categories-list"></div>
                 </div>
-                
-                <div class="sidebar-section">
-                    <div class="sidebar-actions">
-                        <button id="export-btn" class="sidebar-btn">📤 Export</button>
-                        <input type="file" id="import-file" accept=".json" style="display: none;">
-                        <button id="import-btn" class="sidebar-btn">📥 Import</button>
-                        <button id="toggle-completed" class="sidebar-btn">Verberg afgevinkte</button>
-                    </div>
+
+                <div class="search-section">
+                    <input type="text" id="search-input" placeholder="🔍 Zoeken in taken...">
                 </div>
-            </div>
-        </aside>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Quick Add Task (Always Visible) -->
-            <section class="quick-add">
-                <div class="task-form">
-                    <textarea id="task-input" placeholder="Wat wil je vandaag doen?" class="task-textarea" rows="2"></textarea>
-                    <div class="task-controls">
-                        <select id="task-category" class="category-select">
-                            <option value="algemeen">Algemeen</option>
-                        </select>
-                        <button id="add-task-btn" class="add-task-btn">Toevoegen</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Search -->
-            <section class="search-section">
-                <input type="text" id="search-input" placeholder="🔍 Zoeken in taken..." class="search-input">
-            </section>
-
-            <!-- Tasks -->
-            <section class="tasks-section">
-                <div id="tasks-container" class="tasks-container">
+                <div id="tasks-container">
                     <div id="tasks-list"></div>
                 </div>
-            </section>
-        </main>
+            </div>
+        </div>
     </div>
 
     <div id="loading" class="loading hidden">
