@@ -1119,14 +1119,19 @@ class TakenlijstApp {
             
             // 4) Clear history and redirect to login page
             setTimeout(() => {
-                // Clear as much history as possible
+                // Clear as much history as possible and force reload of login
                 if (window.history && window.history.replaceState) {
                     window.history.replaceState(null, '', '/login.html');
-                    // Try to clear forward history too
-                    window.history.pushState(null, '', '/login.html');
-                    window.location.replace('/login.html');
+                    // Clear browser storage to prevent autofill
+                    try {
+                        sessionStorage.clear();
+                        localStorage.removeItem('recentCredentials');
+                    } catch (e) {}
+                    
+                    // Force reload of login page to clear any cached form data
+                    window.location.href = '/login.html?t=' + Date.now();
                 } else {
-                    window.location.replace('/login.html');
+                    window.location.replace('/login.html?t=' + Date.now());
                 }
             }, 1000);
             

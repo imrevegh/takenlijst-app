@@ -128,12 +128,12 @@
         <form id="login-form">
             <div class="form-group">
                 <label for="username">Gebruikersnaam</label>
-                <input type="text" id="username" name="username" required autocomplete="username">
+                <input type="text" id="username" name="username" required autocomplete="off">
             </div>
 
             <div class="form-group">
                 <label for="password">Wachtwoord</label>
-                <input type="password" id="password" name="password" required autocomplete="current-password">
+                <input type="password" id="password" name="password" required autocomplete="off">
             </div>
 
             <button type="submit" class="login-button" id="login-btn">
@@ -147,6 +147,21 @@
     </div>
 
     <script>
+        // Clear form on page load for security
+        window.addEventListener('load', () => {
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('username').focus();
+        });
+
+        // Clear form when page becomes visible (back button)
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            }
+        });
+
         document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             
