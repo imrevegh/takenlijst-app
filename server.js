@@ -19,7 +19,7 @@ const CACHE_DURATION = 30000; // 30 seconds cache
 
 // App is designed for Render.com deployment only
 const IS_RENDER = true; // Always use memory storage (Render has ephemeral file system)
-console.log('🚀 Environment: RENDER (memory-only storage)');
+console.log('🚀 Environment: RENDER (memory-only storage) - Restart test');
 
 app.use(compression()); // Enable gzip compression
 app.use(express.json({ limit: '10mb' }));
