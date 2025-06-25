@@ -169,12 +169,15 @@ async function saveTasks(data) {
     tasksCache = null;
     cacheTimestamp = 0;
     
-    // Store in memory for production (files don't persist on Render)
+    // Always save to file in development, and also save to memory for Render production
+    console.log('Saving tasks to file...');
+    await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2));
+    console.log('Tasks saved successfully to file');
+    
+    // Also store in memory for production (files don't persist on Render)
     if (process.env.NODE_ENV === 'production') {
       memoryTasks = data;
-      return;
     }
-    await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2));
   } catch (error) {
     console.error('Error saving tasks:', error);
     // Fallback to memory if file write fails
