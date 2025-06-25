@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takenlijst App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>📝 Takenlijst</h1>
+        <div class="header-controls">
+            <button id="export-btn" class="btn-secondary">📤 Export</button>
+            <input type="file" id="import-file" accept=".json" style="display: none;">
+            <button id="import-btn" class="btn-secondary">📥 Import</button>
+            <button id="toggle-completed" class="btn-secondary">Verberg afgevinkte taken</button>
+            <button id="dark-mode-toggle" class="btn-secondary">🌙</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="category-section">
+                <h3>Categorieën</h3>
+                <div class="category-form">
+                    <input type="text" id="new-category-input" placeholder="Nieuwe categorie...">
+                    <input type="color" id="category-color" value="#0078d4">
+                    <button id="add-category-btn" class="btn-primary">+</button>
+                </div>
+                <div id="categories-list"></div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="task-area">
+                <div class="task-input-section">
+                    <div class="task-form">
+                        <textarea id="task-input" placeholder="Wat wil je vandaag doen?"></textarea>
+                        <div class="task-form-controls">
+                            <select id="task-category">
+                                <option value="algemeen">Algemeen</option>
+                            </select>
+                            <button id="add-task-btn" class="btn-primary">Taak toevoegen</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-section">
+                    <input type="text" id="search-input" placeholder="🔍 Zoeken in taken...">
+                </div>
+
+                <div id="tasks-container">
+                    <div id="tasks-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <span>Link preview laden...</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

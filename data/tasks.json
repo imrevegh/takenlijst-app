@@ -1,0 +1,2246 @@
+{
+  "categories": {
+    "algemeen": {
+      "name": "Algemeen",
+      "color": "#3498db"
+    },
+    "crypto": {
+      "name": "Crypto",
+      "color": "#f39c12"
+    },
+    "klussen": {
+      "name": "Klussen",
+      "color": "#e74c3c"
+    },
+    "projecten": {
+      "name": "Projecten",
+      "color": "#9b59b6"
+    },
+    "dagelijks": {
+      "name": "Dagelijks",
+      "color": "#2ecc71"
+    },
+    "financien": {
+      "name": "Financiën eind van het jaar",
+      "color": "#34495e"
+    },
+    "wiskunde": {
+      "name": "Wiskunde",
+      "color": "#1abc9c"
+    },
+    "verlanglijstje": {
+      "name": "Verlanglijstje",
+      "color": "#e67e22"
+    },
+    "kijklijst": {
+      "name": "Kijklijst",
+      "color": "#8e44ad"
+    },
+    "films": {
+      "name": "Films",
+      "color": "#c0392b"
+    },
+    "series": {
+      "name": "Series",
+      "color": "#d35400"
+    },
+    "rolmodellen": {
+      "name": "Rolmodellen",
+      "color": "#27ae60"
+    },
+    "games": {
+      "name": "Games",
+      "color": "#16a085"
+    },
+    "kado_yo_yi": {
+      "name": "Kado Yo-Yi",
+      "color": "#f1c40f"
+    },
+    "leefregels": {
+      "name": "Leefregels",
+      "color": "#95a5a6"
+    },
+    "coursera": {
+      "name": "Coursera",
+      "color": "#3498db"
+    }
+  },
+  "tasks": [
+    {
+      "id": "1749726826822",
+      "text": "https://www.linkedin.com/posts/stichting-verbeter-de-wereld_beste-wereldverbeteraars-op-dit-moment-activity-7336413870770524161-9cvl?utm_source=share&utm_medium=member_android&rcm=ACoAAABPkEQBJl5HKb6Y4f8f5dnHQy8tFB6Hr14",
+      "completed": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Beste wereldverbeteraars! | Stichting Verbeter de Wereld",
+          "description": "Beste wereldverbeteraars! Op dit moment zijn we bezig na te denken over de toekomst van stichting Verbeter de Wereld. Daarbij werd één ding heel duidelijk: we willen graag deze lieve leuke mensen weer eens zien! Er zijn de afgelopen jaren zoveel gave ideeën ontstaan, projecten opgezet, acties ondernomen… het is tijd om dit mooie netwerk weer eens wakker te schudden en te verenigen. Daarom hebben we besloten een reünie te organiseren. We organiseren een relaxte middag met veel gezelligheid en gesprekken, een dag om te kletsen met oude bekenden of nieuwe gezichten. Iedereen is welkom, ook jullie vrienden en/of familie. We zouden het ook leuk vinden alle toekomstige wereldverbeteraars hier te zien, dus kinderen zijn meer dan welkom :) Vanaf 12:30 kan iedereen binnendruppelen en tot 14:00 uur drinken we samen iets in een café. Daarna willen we een boswandeling maken vanaf het café met degenen die daar zin in hebben. Rond 15.30 komen we weer samen voor een picknick in de natuur, dus het zou fijn zijn als je iets te eten of drinken mee kan nemen. Uiteraard kun je zo lang of kort blijven als je wil. Mail naar info@verbeterdewereld.org als je er bij wil zijn. Dan zullen we de details van de exacte locatie met je delen. We hopen vele van jullie te zien! Groeten, Marike, Saar en Iris",
+          "image": "https://static.licdn.com/aero-v1/sc/h/c45fy346jw096z9pbphyyhdz7",
+          "url": "https://www.linkedin.com/posts/stichting-verbeter-de-wereld_beste-wereldverbeteraars-op-dit-moment-activity-7336413870770524161-9cvl?utm_source=share&utm_medium=member_android&rcm=ACoAAABPkEQBJl5HKb6Y4f8f5dnHQy8tFB6Hr14"
+        }
+      ],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 71
+    },
+    {
+      "id": "1749726826823",
+      "text": "Quotes zoeken",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749800393490,
+      "favorite": false,
+      "sortOrder": 41
+    },
+    {
+      "id": "1749726826824",
+      "text": "Offerte Binnenlandse Zaken",
+      "completed": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749802537800,
+      "favorite": true,
+      "sortOrder": 34
+    },
+    {
+      "id": "1749726826826",
+      "text": "Thephonelab prive betaald en chocolade plus pincode vinden",
+      "completed": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1750059637205,
+      "favorite": false,
+      "sortOrder": 28
+    },
+    {
+      "id": "1749726826827",
+      "text": "Pensioen overmaken",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749800418411,
+      "favorite": false,
+      "sortOrder": 37
+    },
+    {
+      "id": "1749726826828",
+      "text": "https://www.youtube.com/watch?v=7DEWW1yUN74",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Tackling the Biggest Unsolved Problems in Math with 3Blue1Brown",
+          "description": "Why can’t you divide by zero? Neil deGrasse Tyson and Chuck Nice discuss higher dimensions, dividing by zero, and math’s unsolved questions with math YouTube...",
+          "image": "https://i.ytimg.com/vi/7DEWW1yUN74/maxresdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=7DEWW1yUN74"
+        }
+      ],
+      "lastModified": 1749726833822,
+      "favorite": false,
+      "sortOrder": 70
+    },
+    {
+      "id": "1749726826829",
+      "text": "Weiss 2015",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749800393490,
+      "favorite": false,
+      "sortOrder": 20
+    },
+    {
+      "id": "1749726826830",
+      "text": "https://compassionatesystems.earlylearning.ubc.ca/",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Compassionate Systems Leadership",
+          "description": "",
+          "image": "https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop&auto=format",
+          "url": "https://compassionatesystems.earlylearning.ubc.ca/"
+        }
+      ],
+      "lastModified": 1749752808567,
+      "favorite": false,
+      "sortOrder": 43
+    },
+    {
+      "id": "1749726826831",
+      "text": "Idee: debat over vraag of AI leidt tot minder behoefte aan samenwerking? (Solo AI?)",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749796637878,
+      "favorite": true,
+      "sortOrder": 9
+    },
+    {
+      "id": "1749726826832",
+      "text": "Hugo Boss zwarte suède schoenen",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749765809138,
+      "favorite": false,
+      "sortOrder": 42
+    },
+    {
+      "id": "1749726826833",
+      "text": "Facturen",
+      "completed": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1750095663765,
+      "favorite": true,
+      "sortOrder": 4
+    },
+    {
+      "id": "1749726826834",
+      "text": "Oppassen woensdagen en 12 juli",
+      "completed": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1750002711939,
+      "favorite": true,
+      "sortOrder": 30
+    },
+    {
+      "id": "1749726826835",
+      "text": "Broodfonds ophogen",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749800416009,
+      "favorite": false,
+      "sortOrder": 39
+    },
+    {
+      "id": "1749726826836",
+      "text": "Amersfoortse ophogen",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749800416010,
+      "favorite": false,
+      "sortOrder": 38
+    },
+    {
+      "id": "1749726826837",
+      "text": "Verzekering en bonnetjes, Christiaan betalen",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749800393491,
+      "favorite": false,
+      "sortOrder": 40
+    },
+    {
+      "id": "1749726826838",
+      "text": "Inner Development Goals HUB in ISM Astare",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726843822,
+      "favorite": false,
+      "sortOrder": 24
+    },
+    {
+      "id": "1749726826839",
+      "text": "https://open.spotify.com/playlist/6qMUWgPUuKjmR0cKNlxbLd?si=w24J9FgKS32fOqhmOKhLZQ&pi=W8LSS8nhQu6Qz",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Music for shaking",
+          "description": "Playlist · Merijn Oudheusden · 52 items · 215 saves",
+          "image": "https://storage.googleapis.com/link-previews/e-UFg1MM0BTJ2M",
+          "url": "https://open.spotify.com/playlist/6qMUWgPUuKjmR0cKNlxbLd?si=w24J9FgKS32fOqhmOKhLZQ&pi=W8LSS8nhQu6Qz"
+        }
+      ],
+      "lastModified": 1749726844822,
+      "favorite": false,
+      "sortOrder": 69
+    },
+    {
+      "id": "1749726826840",
+      "text": "tcli.com compassionateleader(s).nl cl-institute.nl clinstitute.nl compassion-institute.nl compassionate-leadership.org compassionate-leaders.org",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726845822,
+      "favorite": false,
+      "sortOrder": 23
+    },
+    {
+      "id": "1749726826841",
+      "text": "https://www.linkedin.com/posts/syed-danish-zaidi-6b618a167_freedom-lifebalance-wellbeing-activity-7299709424158273536-nlQs?utm_source=share&utm_medium=member_android&rcm=ACoAAABPkEQBJl5HKb6Y4f8f5dnHQy8tFB6Hr14",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Don&#39;t Ignore Yourself. | Syed Danish Zaidi",
+          "description": "Don&#39;t Ignore Yourself. We&#39;re all caught up in our Jobs, businesses, bills, and family and it&#39;s a lot. But somewhere in there are we truly living? We chase our goals, tick boxes, and sometimes forget we&#39;re not robots. We need space to breathe and to enjoy the moment. It&#39;s not about quitting everything. It&#39;s about finding those little pockets of time for ourselves. A walk, a hobby, a chat with a friend. Those moments? They&#39;re where life happens. Let&#39;s remember that we&#39;re human and that means living not just existing. What are you doing to find your freedom today? #Freedom #LifeBalance #Wellbeing #HumanConnection #Mindfulness | 61 comments on LinkedIn",
+          "image": "https://dms.licdn.com/playlist/vid/v2/D4D05AQGZOOKw_prhzA/thumbnail-with-play-button-overlay-high/B4DZU3G9lZGcDM-/0/1740386339025?e=2147483647&v=beta&t=5RAQD8IamH00T3Wcopx1l--7A_jxDDh4oo9XFSeSuT0",
+          "url": "https://www.linkedin.com/posts/syed-danish-zaidi-6b618a167_freedom-lifebalance-wellbeing-activity-7299709424158273536-nlQs?utm_source=share&utm_medium=member_android&rcm=ACoAAABPkEQBJl5HKb6Y4f8f5dnHQy8tFB6Hr14"
+        }
+      ],
+      "lastModified": 1749726846822,
+      "favorite": false,
+      "sortOrder": 68
+    },
+    {
+      "id": "1749726826843",
+      "text": "Fresh Lemon",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726848822,
+      "favorite": false,
+      "sortOrder": 67
+    },
+    {
+      "id": "1749726826844",
+      "text": "https://www.linkedin.com/posts/suzan-kuijsten-5666312b_gekopstress-theschoolofstress-stress-ugcPost-7291023709656547328-Zoxs?utm_source=share&utm_medium=member_android",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "#13 Wat doe je als je je gebroken voelt? | Suzan Kuijsten",
+          "description": "#13 Wat doe je als je je gebroken voelt? Bloedmooi fragment van Jim Carrey 🦋 In deze *Gek op Stress* reeks deel ik video&#39;s en krachtige quotes, gebaseerd op mijn werk bij The School of Stress. We hebben allemaal wel eens onze uitdagingen, en juist daar valt veel van elkaar te leren. Ik hoop dat deze ‘shotjes inspiratie’ je helpen om een fijnere stressbalans te vinden. ------------------------------------------------------ 🙋‍♀️ Ik ben Suzan Kuijsten 🔥 Founder van The School of Stress (business school for stress management) 🧠 Stress-socioloog 📚 Auteur van Gek op Stress maar niet altijd &amp; co host van de Gek op Stress podcast) 🎯Wat we bieden: stress masterclasses, workshops en leiderschaps-sessies ➡️Interactieve sessies waarin je alles leert over stressmanagement op de werkvloer 👍🏼 Praktisch, boeiend en altijd vol humor! 📌 Wil je er ook een keer bij zijn? Klik dan op de link onderaan mijn profiel #gekopstress #theschoolofstress #stress #stressmanagement #stressbalans | 37 comments on LinkedIn",
+          "image": "https://dms.licdn.com/playlist/vid/v2/D4E05AQHIL7Uav56kFQ/thumbnail-with-play-button-overlay-low/B4EZS7rbtrHgDs-/0/1738315515667?e=2147483647&v=beta&t=VOrXzSlx2CQfzpqHDnuG-BPRxxyxNlMGZ3ckYb0qSgc",
+          "url": "https://www.linkedin.com/posts/suzan-kuijsten-5666312b_gekopstress-theschoolofstress-stress-ugcPost-7291023709656547328-Zoxs?utm_source=share&utm_medium=member_android"
+        }
+      ],
+      "lastModified": 1749726849822,
+      "favorite": false,
+      "sortOrder": 66
+    },
+    {
+      "id": "1749726826845",
+      "text": "Academy for compassionate Leadership",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726850822,
+      "favorite": false,
+      "sortOrder": 22
+    },
+    {
+      "id": "1749726826846",
+      "text": "Hypnagogie",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726851822,
+      "favorite": false,
+      "sortOrder": 65
+    },
+    {
+      "id": "1749726826847",
+      "text": "immunity to change (constructivist model)",
+      "completed": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726852822,
+      "favorite": false,
+      "sortOrder": 64
+    },
+    {
+      "id": "1749726826848",
+      "text": "Proton mail ding (ander email adres)",
+      "completed": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726853822,
+      "favorite": false,
+      "sortOrder": 63
+    },
+    {
+      "id": "1749726826849",
+      "text": "https://80000hours.org/career-guide/introduction/",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "How to have a meaningful career with a large social impact",
+          "description": "A free guide based on five years of research alongside academics at Oxford University.",
+          "image": "https://80000hours.org/wp-content/uploads/2016/04/icecream-taster-v16-e1465228392655.png",
+          "url": "https://80000hours.org/career-guide/introduction/"
+        }
+      ],
+      "lastModified": 1749726854822,
+      "favorite": false,
+      "sortOrder": 62
+    },
+    {
+      "id": "1749726826850",
+      "text": "https://www.goodreads.com/book/show/51778153-livewired?ac=1",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Livewired: The Inside Story of the Ever-Changing Brain",
+          "description": "From the best-selling author of Incognito and Sum comes…",
+          "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1580794624l/51778153.jpg",
+          "url": "https://www.goodreads.com/book/show/51778153-livewired?ac=1"
+        }
+      ],
+      "lastModified": 1750098891220,
+      "favorite": false,
+      "sortOrder": 25
+    },
+    {
+      "id": "1749726826851",
+      "text": "https://www.goodreads.com/book/show/55200359-peak-mind",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Peak Mind: Find Your Focus, Own Your Attention, Invest …",
+          "description": "Research shows we are missing 50 percent of our lives. …",
+          "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1631489805i/55200359.jpg",
+          "url": "https://www.goodreads.com/book/show/55200359-peak-mind"
+        }
+      ],
+      "lastModified": 1749726856822,
+      "favorite": false,
+      "sortOrder": 61
+    },
+    {
+      "id": "1749726826852",
+      "text": "Vakantie plannen",
+      "completed": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726857822,
+      "favorite": false,
+      "sortOrder": 60
+    },
+    {
+      "id": "1749726826853",
+      "text": "Myrlv CV uploaden",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726858822,
+      "favorite": false,
+      "sortOrder": 21
+    },
+    {
+      "id": "1749726826854",
+      "text": "https://www.youtube.com/watch?v=qkZuI9ND_ow",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Dan Harris and Thupten Jinpa on the Miracle of Mindful Meditation",
+          "description": "NEW YORK, February 15, 2018 —ABC News Anchor Dan Harris and Tibetan scholar and long-time English translator for the Dalai Lama Dr. Thupten Jinpa speak about...",
+          "image": "https://i.ytimg.com/vi/qkZuI9ND_ow/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=qkZuI9ND_ow"
+        }
+      ],
+      "lastModified": 1749726859822,
+      "favorite": false,
+      "sortOrder": 59
+    },
+    {
+      "id": "1749726826855",
+      "text": "https://hipsy.nl/event/85144-mannencirkel-soesterberg-thema-radicale-compassie-gastspreker",
+      "completed": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Mannencirkel Soesterberg - Thema: Radicale Compassie (Gastfacilitator)",
+          "description": "THE HEART OF MEN ==================== Een maandelijkse mannencirkel waar mannen...",
+          "image": "https://cdn.hipsy.nl/images/events/81IlRXKzg3XUnUswMeiNdH4nmd6Q1vjh8GHnhynO.png",
+          "url": "https://hipsy.nl/event/85144-mannencirkel-soesterberg-thema-radicale-compassie-gastspreker"
+        }
+      ],
+      "lastModified": 1749726860822,
+      "favorite": false,
+      "sortOrder": 58
+    },
+    {
+      "id": "1749726826857",
+      "text": "Fotos papa en mama",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726862822,
+      "favorite": false,
+      "sortOrder": 57
+    },
+    {
+      "id": "1749726826858",
+      "text": "Effective teamwork: circle ding",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726863822,
+      "favorite": false,
+      "sortOrder": 56
+    },
+    {
+      "id": "1749726826859",
+      "text": "Computer opruimen",
+      "completed": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726864822,
+      "favorite": false,
+      "sortOrder": 55
+    },
+    {
+      "id": "1749726826860",
+      "text": "https://www.linkedin.com/posts/matthijssteeneveld_het-benoemen-van-de-emoties-die-in-het-spel-activity-7211619656355209216-XdJE?utm_source=share&utm_medium=member_android",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "&#39;Het benoemen van de emoties die in het spel zijn, beknot hun vermogen om irrationele actie af te dwingen en maakt het gemakkelijker om keuzes te maken op basis van een praktisch oordeel.&#39; Bushe &amp;… | Matthijs Steeneveld",
+          "description": "&#39;Het benoemen van de emoties die in het spel zijn, beknot hun vermogen om irrationele actie af te dwingen en maakt het gemakkelijker om keuzes te maken op basis van een praktisch oordeel.&#39; Bushe &amp; Marshak, 2015 (via De Beleidsbubbel). Ok, beetje ingewikkeld opgeschreven misschien, maar simpel gezegd: als we de emoties die spelen kunnen benoemen, krijgen ze een plek. Dat zorgt ervoor dat we minder snel irrationeel handelen en juist méér nuchter, praktisch kunnen oordelen wat een goed idee is. Want als we de emoties ‘onder water’ houden, dan beïnvloeden ze onbewust onze keuzes. Terwijl als we ze boven tafel krijgen, ze een plek krijgen en we door kunnen. Met dank aan Marije van den Berg, auteur van De Beleidsbubbel.",
+          "image": "https://static.licdn.com/aero-v1/sc/h/c45fy346jw096z9pbphyyhdz7",
+          "url": "https://www.linkedin.com/posts/matthijssteeneveld_het-benoemen-van-de-emoties-die-in-het-spel-activity-7211619656355209216-XdJE?utm_source=share&utm_medium=member_android"
+        }
+      ],
+      "lastModified": 1749726865822,
+      "favorite": false,
+      "sortOrder": 54
+    },
+    {
+      "id": "1749726826861",
+      "text": "https://psycnet.apa.org/doiLanding?doi=10.1037%2Fpspp0000501",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "APA PsycNet",
+          "description": "",
+          "image": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=400&h=300&fit=crop&auto=format",
+          "url": "https://psycnet.apa.org/doiLanding?doi=10.1037%2Fpspp0000501"
+        }
+      ],
+      "lastModified": 1749726866822,
+      "favorite": false,
+      "sortOrder": 53
+    },
+    {
+      "id": "1749726826862",
+      "text": "Electric maze experiment",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726867822,
+      "favorite": false,
+      "sortOrder": 52
+    },
+    {
+      "id": "1749726826863",
+      "text": "Wanderers Erik wernquist",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726869822,
+      "favorite": false,
+      "sortOrder": 50
+    },
+    {
+      "id": "1749726826864",
+      "text": "The high frontier",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726868822,
+      "favorite": false,
+      "sortOrder": 51
+    },
+    {
+      "id": "1749726826865",
+      "text": "Allister Reynolds",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726870822,
+      "favorite": false,
+      "sortOrder": 49
+    },
+    {
+      "id": "1749726826866",
+      "text": "Groenpand bellen: microinverters en geven eerst stroom aan lokale netwerk en dan pas aan stroomnet",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726871822,
+      "favorite": false,
+      "sortOrder": 48
+    },
+    {
+      "id": "1749726826867",
+      "text": "Self compassion resources!",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726872822,
+      "favorite": false,
+      "sortOrder": 47
+    },
+    {
+      "id": "1749726826868",
+      "text": "Gratitude tennis",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726873822,
+      "favorite": false,
+      "sortOrder": 46
+    },
+    {
+      "id": "1749726826869",
+      "text": "Illuminating the mind | Coherence therapy | Compassion in therapy | Psychological safety",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726874822,
+      "favorite": false,
+      "sortOrder": 45
+    },
+    {
+      "id": "1749726826870",
+      "text": "Video A + K",
+      "completed": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726875822,
+      "favorite": false,
+      "sortOrder": 44
+    },
+    {
+      "id": "1749726826871",
+      "text": "https://www.stephendiehl.com/blog.html",
+      "completed": false,
+      "category": "crypto",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "https://www.stephendiehl.com/blog.html",
+          "description": "",
+          "image": "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop&auto=format",
+          "url": "https://www.stephendiehl.com/blog.html"
+        }
+      ],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826872",
+      "text": "https://www.bloomberg.com/features/bitcoin-bulls-bears/",
+      "completed": false,
+      "category": "crypto",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Here are the CEOs, bankers and regulators who believe in Bitcoin—and the many more who don’t",
+          "description": "Who’s hot, and who’s not.",
+          "image": "https://www.bloomberg.com/features/bitcoin-bulls-bears/img/social.jpg",
+          "url": "https://www.bloomberg.com/features/bitcoin-bulls-bears/"
+        }
+      ],
+      "lastModified": 1749726828822,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826873",
+      "text": "Gordijnen + schilderijen + stoelen + tv-meubel + tuin",
+      "completed": false,
+      "category": "klussen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 10
+    },
+    {
+      "id": "1749726826874",
+      "text": "Aloe vera / potten (3) / planten (4)",
+      "completed": false,
+      "category": "klussen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726828822,
+      "favorite": false,
+      "sortOrder": 9
+    },
+    {
+      "id": "1749726826875",
+      "text": "Gordijnen / luxaflex",
+      "completed": false,
+      "category": "klussen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726829822,
+      "favorite": false,
+      "sortOrder": 8
+    },
+    {
+      "id": "1749726826876",
+      "text": "Lampen kopen",
+      "completed": false,
+      "category": "klussen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726830822,
+      "favorite": false,
+      "sortOrder": 7
+    },
+    {
+      "id": "1749726826877",
+      "text": "Lampen ophangen",
+      "completed": false,
+      "category": "klussen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726831822,
+      "favorite": false,
+      "sortOrder": 6
+    },
+    {
+      "id": "1749726826878",
+      "text": "Nieuwe stoelen",
+      "completed": false,
+      "category": "klussen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726832822,
+      "favorite": false,
+      "sortOrder": 5
+    },
+    {
+      "id": "1749726826879",
+      "text": "Foto's afdrukken + ophangen",
+      "completed": false,
+      "category": "klussen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726833822,
+      "favorite": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "1749726826880",
+      "text": "Muurtje keuken",
+      "completed": false,
+      "category": "klussen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726834822,
+      "favorite": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "1749726826881",
+      "text": "Schuifpui",
+      "completed": false,
+      "category": "klussen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726835822,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826882",
+      "text": "Tuin",
+      "completed": false,
+      "category": "klussen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726836822,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826883",
+      "text": "35 Quotes From The Great Persian Poet Rumi That Will Inspire You To The Core",
+      "completed": false,
+      "category": "projecten",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749804515061,
+      "favorite": false,
+      "sortOrder": 5
+    },
+    {
+      "id": "1749726826884",
+      "text": "Compassie / Raindrop.IO lezen / Science of Wisdom film kijken",
+      "completed": false,
+      "category": "projecten",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726828822,
+      "favorite": false,
+      "sortOrder": 6
+    },
+    {
+      "id": "1749726826885",
+      "text": "https://www.udemy.com/course/complete-python-bootcamp/learn/lecture/3421822#overview",
+      "completed": false,
+      "category": "projecten",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "https://www.udemy.com/course/complete-python-bootcamp/learn/lecture/3421822#overview",
+          "description": "",
+          "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop&auto=format",
+          "url": "https://www.udemy.com/course/complete-python-bootcamp/learn/lecture/3421822#overview"
+        }
+      ],
+      "lastModified": 1749804515071,
+      "favorite": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "1749726826886",
+      "text": "Lezen",
+      "completed": false,
+      "category": "projecten",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749804515077,
+      "favorite": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "1749726826887",
+      "text": "Wiskunde",
+      "completed": false,
+      "category": "projecten",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749804515081,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826888",
+      "text": "Chinees",
+      "completed": false,
+      "category": "projecten",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749804515083,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826889",
+      "text": "Positieve gevoelens of kwaliteiten (dankbaarheid) savouren",
+      "completed": false,
+      "category": "dagelijks",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 5
+    },
+    {
+      "id": "1749726826890",
+      "text": "Beweging",
+      "completed": false,
+      "category": "dagelijks",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749802662096,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826891",
+      "text": "Ademhaling",
+      "completed": false,
+      "category": "dagelijks",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726829822,
+      "favorite": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "1749726826892",
+      "text": "Compassie",
+      "completed": false,
+      "category": "dagelijks",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726830822,
+      "favorite": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "1749726826893",
+      "text": "EMDR",
+      "completed": false,
+      "category": "dagelijks",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749802665202,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826894",
+      "text": "Reiskilometers auto ✭",
+      "completed": false,
+      "category": "financien",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 12
+    },
+    {
+      "id": "1749726826895",
+      "text": "Donaties PW checken met Tjeerd ✭",
+      "completed": false,
+      "category": "financien",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726828822,
+      "favorite": false,
+      "sortOrder": 11
+    },
+    {
+      "id": "1749726826896",
+      "text": "NS.NL (Overzicht OV-fiets + voordeelurenabonnement) & OV-chip (al bij omzetbelasting in januari) ✭",
+      "completed": false,
+      "category": "financien",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726829822,
+      "favorite": false,
+      "sortOrder": 10
+    },
+    {
+      "id": "1749726826897",
+      "text": "Rekeningafschriften & mutaties (zakelijke rekeningen) ✭",
+      "completed": false,
+      "category": "financien",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726830822,
+      "favorite": false,
+      "sortOrder": 9
+    },
+    {
+      "id": "1749726826898",
+      "text": "Betalingen met credit card en PayPal checken & Claude ✭",
+      "completed": false,
+      "category": "financien",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726831822,
+      "favorite": false,
+      "sortOrder": 8
+    },
+    {
+      "id": "1749726826899",
+      "text": "Captin ✭",
+      "completed": false,
+      "category": "financien",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726832822,
+      "favorite": false,
+      "sortOrder": 7
+    },
+    {
+      "id": "1749726826900",
+      "text": "Financiële jaaroverzichten (ook van hypotheek / pensioen / captin) ✭",
+      "completed": false,
+      "category": "financien",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726833822,
+      "favorite": false,
+      "sortOrder": 6
+    },
+    {
+      "id": "1749726826901",
+      "text": "Lijst met facturen van Yo-Yi voor Tjeerd (incl en excl btw) ✭",
+      "completed": false,
+      "category": "financien",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726834822,
+      "favorite": false,
+      "sortOrder": 5
+    },
+    {
+      "id": "1749726826902",
+      "text": "Polis levensverzekering & AOV allianz ✭",
+      "completed": false,
+      "category": "financien",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726835822,
+      "favorite": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "1749726826903",
+      "text": "Bewijsstukken bij afschriften betaalrekening TrueVoice (plus verklaring bij items belastingdienst) ✭",
+      "completed": false,
+      "category": "financien",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726836822,
+      "favorite": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "1749726826904",
+      "text": "Pensioenbrieven en jaaropgave ✭",
+      "completed": false,
+      "category": "financien",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749804552435,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826905",
+      "text": "Jaaropgave UWV Yo-Yi ✭",
+      "completed": false,
+      "category": "financien",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749804551548,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826906",
+      "text": "http://www.hhofstede.nl/raadsels/raadsels.htm",
+      "completed": false,
+      "category": "wiskunde",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Wiskundige Raadsels",
+          "description": "",
+          "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop&auto=format",
+          "url": "http://www.hhofstede.nl/raadsels/raadsels.htm"
+        }
+      ],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 5
+    },
+    {
+      "id": "1749726826907",
+      "text": "Boek over first order logic! https://www.amazon.com/Introduction-Mathematical-Discrete-Mathematics-Applications/dp/1482237725/ of https://www.amazon.com/Introduction-Mathematical-Discrete-Mathematics-Applications/dp/1584888768",
+      "completed": false,
+      "category": "wiskunde",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Introduction to Mathematical Logic (Discrete Mathematics and Its Applications): Mendelson, Elliott: 9781482237726: Amazon.com: Books",
+          "description": "Buy Introduction to Mathematical Logic (Discrete Mathematics and Its Applications) on Amazon.com ✓ FREE SHIPPING on qualified orders",
+          "image": "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop&auto=format",
+          "url": "https://www.amazon.com/Introduction-Mathematical-Discrete-Mathematics-Applications/dp/1482237725/"
+        },
+        {
+          "title": "Introduction to Mathematical Logic, Fifth Edition (Discrete Mathematics and Its Applications): Mendelson, Elliott: 9781584888765: Amazon.com: Books",
+          "description": "Buy Introduction to Mathematical Logic, Fifth Edition (Discrete Mathematics and Its Applications) on Amazon.com ✓ FREE SHIPPING on qualified orders",
+          "image": "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop&auto=format",
+          "url": "https://www.amazon.com/Introduction-Mathematical-Discrete-Mathematics-Applications/dp/1584888768"
+        }
+      ],
+      "lastModified": 1749726828822,
+      "favorite": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "1749726826908",
+      "text": "http://projecteuler.net/",
+      "completed": false,
+      "category": "wiskunde",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "About - Project Euler",
+          "description": "A website dedicated to the fascinating world of mathematics and programming",
+          "image": "https://images.unsplash.com/photo-1578881121126-0ba8a6e0ac42?w=400&h=300&fit=crop&auto=format",
+          "url": "http://projecteuler.net/"
+        }
+      ],
+      "lastModified": 1749726829822,
+      "favorite": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "1749726826909",
+      "text": "Beschrijven en bewijzen",
+      "completed": false,
+      "category": "wiskunde",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726830822,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826910",
+      "text": "Opgaven wiskunde-olympiades",
+      "completed": false,
+      "category": "wiskunde",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726831822,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826911",
+      "text": "Sporthorloge",
+      "completed": false,
+      "category": "verlanglijstje",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826912",
+      "text": "Lezing wetenschapper / filosoof",
+      "completed": false,
+      "category": "verlanglijstje",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726828822,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826913",
+      "text": "https://www.uwalumni.com/news/uw-now-ratner-rosenhagen-davidson/",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "The UW Now Livestream with Jennifer Ratner-Rosenhagen and Richard Davidson | Wisconsin Alumni Association",
+          "description": "",
+          "image": "https://www.uwalumni.com/static/b33917f9f30cba90ba304e3bf883fe0c/39f70/UWNOW_Livestream_Episode34.jpg",
+          "url": "https://www.uwalumni.com/news/uw-now-ratner-rosenhagen-davidson/"
+        }
+      ],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 15
+    },
+    {
+      "id": "1749726826914",
+      "text": "Sandel over debat: https://www.youtube.com/watch?v=hPsUXhXgWmI",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Michael Sandel: The lost art of democratic debate",
+          "description": "http://www.ted.com Democracy thrives on civil debate, Michael Sandel says -- but we're shamefully out of practice. He leads a fun refresher, with TEDsters s...",
+          "image": "https://i.ytimg.com/vi/hPsUXhXgWmI/hqdefault.jpg?sqp=-oaymwEmCOADEOgC8quKqQMa8AEB-AHQBoAC4AOKAgwIABABGH8gJygqMA8=&rs=AOn4CLA7iPi98a8brnAsFQjABnz-xSiu2A",
+          "url": "https://www.youtube.com/watch?v=hPsUXhXgWmI"
+        }
+      ],
+      "lastModified": 1749726828822,
+      "favorite": false,
+      "sortOrder": 14
+    },
+    {
+      "id": "1749726826915",
+      "text": "https://www.human.nl/changeyourmind.html",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "change your mind",
+          "description": "Change your Mind",
+          "image": "https://images.vpro.nl/282kmrr5wgm9/w_1200/source.jpg",
+          "url": "https://www.human.nl/changeyourmind.html"
+        }
+      ],
+      "lastModified": 1749726829822,
+      "favorite": false,
+      "sortOrder": 13
+    },
+    {
+      "id": "1749726826916",
+      "text": "https://www.human.nl/therightthing",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "What's the Right Thing to Do?",
+          "description": "What's the Right Thing to Do?",
+          "image": "https://images.vpro.nl/4gyer0ntxpnx/w_1200/jcr-content-31.jpg",
+          "url": "https://www.human.nl/therightthing"
+        }
+      ],
+      "lastModified": 1749726830822,
+      "favorite": false,
+      "sortOrder": 12
+    },
+    {
+      "id": "1749726826917",
+      "text": "TED-talks over space!",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726831822,
+      "favorite": false,
+      "sortOrder": 11
+    },
+    {
+      "id": "1749726826918",
+      "text": "https://www.human.nl/speel~VPWON_1206715~roman-krznaric-hoe-ambities-waar-te-maken-durf-te-denken-xtra~.html",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "https://www.human.nl/speel~VPWON_1206715~roman-krznaric-hoe-ambities-waar-te-maken-durf-te-denken-xtra~.html",
+          "description": "",
+          "image": "https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&h=300&fit=crop&auto=format",
+          "url": "https://www.human.nl/speel~VPWON_1206715~roman-krznaric-hoe-ambities-waar-te-maken-durf-te-denken-xtra~.html"
+        }
+      ],
+      "lastModified": 1749726832822,
+      "favorite": false,
+      "sortOrder": 10
+    },
+    {
+      "id": "1749726826919",
+      "text": "https://www.ted.com/talks/peter_donnelly_shows_how_stats_fool_juries",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "How juries are fooled by statistics",
+          "description": "Oxford mathematician Peter Donnelly reveals the common mistakes humans make in interpreting statistics -- and the devastating impact these errors can have on the outcome of criminal trials.",
+          "image": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/159_480x360.jpg?u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=82c=1050%2C550&w=1050",
+          "url": "https://www.ted.com/talks/peter_donnelly_shows_how_stats_fool_juries"
+        }
+      ],
+      "lastModified": 1749726833822,
+      "favorite": false,
+      "sortOrder": 9
+    },
+    {
+      "id": "1749726826920",
+      "text": "What the hague / politicologica",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726834822,
+      "favorite": false,
+      "sortOrder": 8
+    },
+    {
+      "id": "1749726826921",
+      "text": "Michael Sandel: http://www.youtube.com/watch?v=kBdfcR-8hEY",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Justice: What's The Right Thing To Do? Episode 01 \"THE MORAL SIDE OF MURDER\"",
+          "description": "To register for the 2015 course, visit https://www.edx.org/course/justice-harvardx-er22-1x-0. PART ONE: THE MORAL SIDE OF MURDERIf you had to choose between ...",
+          "image": "https://i.ytimg.com/vi/kBdfcR-8hEY/maxresdefault.jpg",
+          "url": "http://www.youtube.com/watch?v=kBdfcR-8hEY"
+        }
+      ],
+      "lastModified": 1749726835822,
+      "favorite": false,
+      "sortOrder": 7
+    },
+    {
+      "id": "1749726826922",
+      "text": "Dus ik ben... http://www.uitzendinggemist.nl/afleveringen/1384208",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Welkom bij NPO | NPO Start",
+          "description": "Start programma's waar en wanneer je maar wilt op NPO Start. Met een plus abonnement kijk je zonder reclame alle afleveringen van je favoriete Nederlandse series.",
+          "image": "https://npo.nl/start/open-graph-facebook.jpg?dimensions=1200x630&resize_fit_method=cover",
+          "url": "http://www.uitzendinggemist.nl/afleveringen/1384208"
+        }
+      ],
+      "lastModified": 1749726836822,
+      "favorite": false,
+      "sortOrder": 6
+    },
+    {
+      "id": "1749726826923",
+      "text": "Kijk 'Does Free Will Exist?' op YouTube",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726837822,
+      "favorite": false,
+      "sortOrder": 5
+    },
+    {
+      "id": "1749726826924",
+      "text": "Kijk 'Mind Over Masters: The Question of Free Will' op YouTube",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726838822,
+      "favorite": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "1749726826925",
+      "text": "VPRO serie over China",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726839822,
+      "favorite": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "1749726826926",
+      "text": "5 dysfunctions of a team https://www.youtube.com/watch?v=w42Sfbh91vU",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "- YouTube",
+          "description": "Bekijk je favoriete video's, luister naar de muziek die je leuk vindt, upload originele content en deel alles met vrienden, familie en anderen op YouTube.",
+          "image": "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop&auto=format",
+          "url": "https://www.youtube.com/watch?v=w42Sfbh91vU"
+        }
+      ],
+      "lastModified": 1749726840822,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826927",
+      "text": "Death: A Free Philosophy Course from Yale Open Culture",
+      "completed": false,
+      "category": "kijklijst",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726841822,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826928",
+      "text": "spring summer autumn",
+      "completed": false,
+      "category": "films",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 10
+    },
+    {
+      "id": "1749726826929",
+      "text": "Black earth rising",
+      "completed": false,
+      "category": "films",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726828822,
+      "favorite": false,
+      "sortOrder": 9
+    },
+    {
+      "id": "1749726826930",
+      "text": "Ballade van narajama",
+      "completed": false,
+      "category": "films",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726829822,
+      "favorite": false,
+      "sortOrder": 8
+    },
+    {
+      "id": "1749726826931",
+      "text": "La meglio Gioventu",
+      "completed": false,
+      "category": "films",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726830822,
+      "favorite": false,
+      "sortOrder": 7
+    },
+    {
+      "id": "1749726826932",
+      "text": "Loro",
+      "completed": false,
+      "category": "rolmodellen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749803933070,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826933",
+      "text": "Before sunrise",
+      "completed": false,
+      "category": "films",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726832822,
+      "favorite": false,
+      "sortOrder": 6
+    },
+    {
+      "id": "1749726826934",
+      "text": "Film: Enjoy poverty",
+      "completed": false,
+      "category": "films",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726833822,
+      "favorite": false,
+      "sortOrder": 5
+    },
+    {
+      "id": "1749726826935",
+      "text": "The great debaters",
+      "completed": false,
+      "category": "films",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726834822,
+      "favorite": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "1749726826936",
+      "text": "La grande bellezza",
+      "completed": false,
+      "category": "films",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726835822,
+      "favorite": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "1749726826937",
+      "text": "Leftovers",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749767133814,
+      "favorite": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "1749726826938",
+      "text": "Mara dentro",
+      "completed": false,
+      "category": "films",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726837822,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826939",
+      "text": "Jackie?",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 15
+    },
+    {
+      "id": "1749726826940",
+      "text": "Boardwalk empire",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726828822,
+      "favorite": false,
+      "sortOrder": 14
+    },
+    {
+      "id": "1749726826941",
+      "text": "Mad men",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726829822,
+      "favorite": false,
+      "sortOrder": 13
+    },
+    {
+      "id": "1749726826942",
+      "text": "Black sails",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726830822,
+      "favorite": false,
+      "sortOrder": 12
+    },
+    {
+      "id": "1749726826943",
+      "text": "Counterpart",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726831822,
+      "favorite": false,
+      "sortOrder": 11
+    },
+    {
+      "id": "1749726826944",
+      "text": "True detective",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726832822,
+      "favorite": false,
+      "sortOrder": 10
+    },
+    {
+      "id": "1749726826945",
+      "text": "Narcos",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726833822,
+      "favorite": false,
+      "sortOrder": 9
+    },
+    {
+      "id": "1749726826946",
+      "text": "The blacklist",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726834822,
+      "favorite": false,
+      "sortOrder": 8
+    },
+    {
+      "id": "1749726826947",
+      "text": "Black mirror",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726835822,
+      "favorite": false,
+      "sortOrder": 7
+    },
+    {
+      "id": "1749726826948",
+      "text": "Westwing",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726836822,
+      "favorite": false,
+      "sortOrder": 6
+    },
+    {
+      "id": "1749726826949",
+      "text": "The wire",
+      "completed": false,
+      "category": "films",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749803331203,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826950",
+      "text": "Orphan black",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749804524525,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826951",
+      "text": "Wild wild country",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726839822,
+      "favorite": false,
+      "sortOrder": 5
+    },
+    {
+      "id": "1749726826952",
+      "text": "What the health",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749804521707,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826953",
+      "text": "The good place",
+      "completed": false,
+      "category": "series",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726841822,
+      "favorite": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "1749726826954",
+      "text": "Louis Theroux",
+      "completed": false,
+      "category": "rolmodellen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 5
+    },
+    {
+      "id": "1749726826955",
+      "text": "Martin Luther King",
+      "completed": false,
+      "category": "rolmodellen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726828822,
+      "favorite": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "1749726826956",
+      "text": "Matthijs van Nieuwkerk",
+      "completed": false,
+      "category": "rolmodellen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726829822,
+      "favorite": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "1749726826957",
+      "text": "Ellen DeGeneris",
+      "completed": false,
+      "category": "rolmodellen",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726830822,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826958",
+      "text": "https://www.warlight.net/SinglePlayer/Play",
+      "completed": false,
+      "category": "games",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Warzone",
+          "description": "Warzone is a customizable strategy game where you compete with your friends to conquer the world.",
+          "image": "https://warzonecdn.com/Images/Warzone/logo.png",
+          "url": "https://www.warlight.net/SinglePlayer/Play"
+        }
+      ],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 7
+    },
+    {
+      "id": "1749726826959",
+      "text": "Morrowind",
+      "completed": false,
+      "category": "games",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726828822,
+      "favorite": false,
+      "sortOrder": 6
+    },
+    {
+      "id": "1749726826960",
+      "text": "Marvel Heroes 2016",
+      "completed": false,
+      "category": "games",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726829822,
+      "favorite": false,
+      "sortOrder": 5
+    },
+    {
+      "id": "1749726826961",
+      "text": "War thunder",
+      "completed": false,
+      "category": "games",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726830822,
+      "favorite": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "1749726826962",
+      "text": "Forza motorsport 6: Apex",
+      "completed": false,
+      "category": "games",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726831822,
+      "favorite": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "1749726826963",
+      "text": "Star Wars the old republic",
+      "completed": false,
+      "category": "games",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726832822,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826964",
+      "text": "World of tanks",
+      "completed": false,
+      "category": "games",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726833822,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826965",
+      "text": "http://www.buurmanutrecht.com",
+      "completed": false,
+      "category": "kado_yo_yi",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Buurman Utrecht",
+          "description": "Buurman Utrecht zorgt voor hergebruik van (tweedehands) bouwmaterialen via werkplaats, workshops en verkoop. Bij ons leer je maken.",
+          "image": "http://static1.squarespace.com/static/5c1a22bf4611a0ca24ecae98/t/5c3decce8985830dcf49dc2d/1547562196314/44884582_513211262495898_3521898041990709248_o.jpg?format=1500w",
+          "url": "http://www.buurmanutrecht.com"
+        }
+      ],
+      "lastModified": 1749804459606,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826966",
+      "text": "https://tampographe.com/polychromies/15-coeur-humain-human-heart.html",
+      "completed": false,
+      "category": "kado_yo_yi",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "https://tampographe.com/polychromies/15-coeur-humain-human-heart.html",
+          "description": "",
+          "image": "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop&auto=format",
+          "url": "https://tampographe.com/polychromies/15-coeur-humain-human-heart.html"
+        }
+      ],
+      "lastModified": 1749804459599,
+      "favorite": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "1749726826967",
+      "text": "http://www.dykast.us/2013/02/05/small-spaces-hidden-jewelry/",
+      "completed": false,
+      "category": "kado_yo_yi",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "http://www.dykast.us/2013/02/05/small-spaces-hidden-jewelry/",
+          "description": "",
+          "image": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=400&h=300&fit=crop&auto=format",
+          "url": "http://www.dykast.us/2013/02/05/small-spaces-hidden-jewelry/"
+        }
+      ],
+      "lastModified": 1749804459602,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826968",
+      "text": "An Ignatian Prayer Adventure - Spiritual Exercises Online Retreat",
+      "completed": false,
+      "category": "leefregels",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 5
+    },
+    {
+      "id": "1749726826969",
+      "text": "Elke dag ontspanningsoefeningen en/of mediteren",
+      "completed": false,
+      "category": "leefregels",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726828822,
+      "favorite": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "1749726826970",
+      "text": "Geen zoete / zoute snacks en gezond eten",
+      "completed": false,
+      "category": "leefregels",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726829822,
+      "favorite": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "1749726826971",
+      "text": "Half uur sport",
+      "completed": false,
+      "category": "leefregels",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726830822,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826972",
+      "text": "Vroeg naar bed (liefst voor 21.30u)",
+      "completed": false,
+      "category": "leefregels",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726831822,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749726826973",
+      "text": "https://www.coursera.org/learn/the-science-of-well-being/home/welcome",
+      "completed": false,
+      "category": "coursera",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "Coursera | Online Courses & Credentials From Top Educators. Join for Free | Coursera",
+          "description": "Learn online and earn valuable credentials from top universities like Yale, Michigan, Stanford, and leading companies like Google and IBM. Join Coursera for free and transform your career with degrees, certificates, Specializations, & MOOCs in data science, computer science, business, and dozens of other topics.",
+          "image": "https://s3.amazonaws.com/coursera/media/Grid_Coursera_Partners_updated.png",
+          "url": "https://www.coursera.org/learn/the-science-of-well-being/home/welcome"
+        }
+      ],
+      "lastModified": 1749726827822,
+      "favorite": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "1749726826974",
+      "text": "Improving your statistical inferences | Coursera",
+      "completed": false,
+      "category": "coursera",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [],
+      "lastModified": 1749726828822,
+      "favorite": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "1749726826975",
+      "text": "https://www.edx.org/course/the-science-of-happiness-0",
+      "completed": false,
+      "category": "coursera",
+      "createdAt": "2025-06-12T11:13:46.822Z",
+      "links": [
+        {
+          "title": "BerkeleyX: The Science of Happiness | edX",
+          "description": "The first MOOC to teach positive psychology. Learn science-based principles and practices for a happy, meaningful life.",
+          "image": "https://prod-discovery.edx-cdn.org/organization/logos/54bc81cb-b736-4505-aa51-dd2b18c61d84-2082c7ba1024.png",
+          "url": "https://www.edx.org/course/the-science-of-happiness-0"
+        }
+      ],
+      "lastModified": 1749726829822,
+      "favorite": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1749739756997",
+      "text": "Brieven Nijmegen opvragen",
+      "completed": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-12T14:49:16.997Z",
+      "links": [],
+      "lastModified": 1749800805585,
+      "favorite": true,
+      "sortOrder": 36
+    },
+    {
+      "id": "1749801529596",
+      "text": "Email",
+      "completed": true,
+      "favorite": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-13T07:58:49.596Z",
+      "lastModified": 1750059637206,
+      "links": [],
+      "sortOrder": 27
+    },
+    {
+      "id": "1749850090678",
+      "text": "Karakter 181 is laatste karakter",
+      "completed": true,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-13T21:28:10.678Z",
+      "lastModified": 1749850090680,
+      "links": [],
+      "sortOrder": 33
+    },
+    {
+      "id": "1749902920353",
+      "text": "> Okee, nu een mega project. Ik wil dat je overal de fun_fact edit of volledig wijzigt. Ik wil dat er in de fun_fact staat: de etymologie van \n  het karakter en de vertalingen en de semantische achtergrond en samenhang van de vertalingen. Laten we beginnen bij karakter 1-50. Dit hoef \n  je niet te verslimmen met allerlei scripts... doe gewoon grondig traag gestaag werk karakter voor karakter.",
+      "completed": true,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-14T12:08:40.353Z",
+      "lastModified": 1749802537800,
+      "links": [],
+      "sortOrder": 35
+    },
+    {
+      "id": "1749906271198",
+      "text": "tot nummer 196",
+      "completed": true,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-14T13:04:31.198Z",
+      "lastModified": 1749906271200,
+      "links": [],
+      "sortOrder": 32
+    },
+    {
+      "id": "1749923952791",
+      "text": "Chinese karakters vanaf 600",
+      "completed": true,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-14T17:59:12.791Z",
+      "lastModified": 1749923952793,
+      "links": [],
+      "sortOrder": 31
+    },
+    {
+      "id": "1750002691856",
+      "text": "Jóska zijn fiets",
+      "completed": true,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-15T15:51:31.856Z",
+      "lastModified": 1750002691858,
+      "links": [],
+      "sortOrder": 19
+    },
+    {
+      "id": "1750002702212",
+      "text": "Rookmelder ophangen",
+      "completed": false,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-15T15:51:42.212Z",
+      "lastModified": 1750002702214,
+      "links": [],
+      "sortOrder": 16
+    },
+    {
+      "id": "1750002711938",
+      "text": "Klimop bij schuurtje! ok!",
+      "completed": false,
+      "favorite": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-15T15:51:51.939Z",
+      "lastModified": 1750098666891,
+      "links": [],
+      "sortOrder": 2
+    },
+    {
+      "id": "1750002718115",
+      "text": "Led-lamp in douche",
+      "completed": false,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-15T15:51:58.115Z",
+      "lastModified": 1750095828215,
+      "links": [],
+      "sortOrder": 15
+    },
+    {
+      "id": "1750011425111",
+      "text": "Filipijnen",
+      "completed": true,
+      "favorite": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-15T18:17:05.111Z",
+      "lastModified": 1750059650165,
+      "links": [],
+      "sortOrder": 26
+    },
+    {
+      "id": "1750053991139",
+      "text": "huisarts joska",
+      "completed": true,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-16T06:06:31.139Z",
+      "lastModified": 1750053991141,
+      "links": [],
+      "sortOrder": 29
+    },
+    {
+      "id": "1750054003371",
+      "text": "bbva voorbereiden",
+      "completed": false,
+      "favorite": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-16T06:06:43.371Z",
+      "lastModified": 1750002691859,
+      "links": [],
+      "sortOrder": 10
+    },
+    {
+      "id": "1750059611422",
+      "text": "Zalf Jóska ophalen",
+      "completed": true,
+      "favorite": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-16T07:40:11.422Z",
+      "lastModified": 1750054003374,
+      "links": [],
+      "sortOrder": 12
+    },
+    {
+      "id": "1750059844694",
+      "text": "Summerschool voorbereiden + spulletjes bestellen + mail sturen deelnemers",
+      "completed": true,
+      "favorite": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-16T07:44:04.694Z",
+      "lastModified": 1750095829559,
+      "links": [],
+      "sortOrder": 3
+    },
+    {
+      "id": "1750067378841",
+      "text": "Boeken tussenstops",
+      "completed": true,
+      "favorite": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-16T09:49:38.841Z",
+      "lastModified": 1750095831963,
+      "links": [],
+      "sortOrder": 14
+    },
+    {
+      "id": "1750071903712",
+      "text": "Presentielijst living the good life!!!",
+      "completed": true,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-16T11:05:03.712Z",
+      "lastModified": 1750095830827,
+      "links": [],
+      "sortOrder": 18
+    },
+    {
+      "id": "1750104405450",
+      "text": "https://www.hotel-thannhof.eu/",
+      "completed": true,
+      "favorite": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-16T20:06:45.450Z",
+      "sortOrder": 13,
+      "links": [
+        {
+          "title": "Hotel Thannhof: Preiswert und Familiär | Hotel Thannhof",
+          "description": "Entdecken Sie das Hotel Thannhof, Ihre preiswerte Unterkunft für Geschäfts- und Urlaubsreisende. Ideal gelegen für Reisen in den Süden, nahe Flughafen und Allianz Arena München. Buchen Sie jetzt online für die besten Angebote!",
+          "image": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1200,h=630,fit=crop,f=jpeg/Aq2qobQ4wbFgwkLk/eff18ecb-d76b-4ac7-9cd6-b82082784569-mv027bOEOGily4e6.JPEG",
+          "url": "https://www.hotel-thannhof.eu/"
+        }
+      ]
+    },
+    {
+      "id": "1750139682449",
+      "text": "Carine",
+      "completed": true,
+      "favorite": true,
+      "category": "algemeen",
+      "createdAt": "2025-06-17T05:54:42.449Z",
+      "sortOrder": 11,
+      "links": []
+    },
+    {
+      "id": "1750251822203",
+      "text": "Fiets Jóska ophalen",
+      "completed": true,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-18T13:03:42.203Z",
+      "sortOrder": 8,
+      "links": []
+    },
+    {
+      "id": "1750251929179",
+      "text": "Belastingdienst betalen",
+      "completed": true,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-18T13:05:29.179Z",
+      "sortOrder": 7,
+      "links": []
+    },
+    {
+      "id": "1750619046919",
+      "text": "https://www.ted.com/talks/rocio_lorenzo_how_diversity_makes_teams_more_innovative",
+      "completed": false,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-22T19:04:06.919Z",
+      "sortOrder": 6,
+      "links": [
+        {
+          "title": "How diversity makes teams more innovative",
+          "description": "Are diverse companies really more innovative? Rocío Lorenzo and her team surveyed 171 companies to find out -- and the answer was a clear yes. In a talk that will help you build a better, more robust company, Lorenzo dives into the data and explains how your company can start producing fresher, more creative ideas by treating diversity as a competitive advantage.",
+          "image": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/40a24cd9-db46-4572-a5b3-4b06561991cb/RocioLorenzo_2017S-embed.jpg?u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=82c=1050%2C550&w=1050",
+          "url": "https://www.ted.com/talks/rocio_lorenzo_how_diversity_makes_teams_more_innovative"
+        }
+      ]
+    },
+    {
+      "id": "1750702962417",
+      "text": "Omzetbelasting",
+      "completed": false,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-23T18:22:42.417Z",
+      "sortOrder": 5,
+      "links": []
+    },
+    {
+      "id": "1750858679085",
+      "text": "Bedden opmaken",
+      "completed": false,
+      "favorite": false,
+      "category": "algemeen",
+      "createdAt": "2025-06-25T13:37:59.086Z",
+      "sortOrder": 1,
+      "links": []
+    }
+  ]
+}

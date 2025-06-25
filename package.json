@@ -1,0 +1,26 @@
+{
+  "name": "takenlijst-app",
+  "version": "1.0.0",
+  "description": "Local task list application with link previews",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "cheerio": "^1.0.0-rc.12",
+    "axios": "^1.6.2",
+    "compression": "^1.7.4"
+  },
+  "optionalDependencies": {
+    "pm2": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "keywords": ["tasks", "todo", "link-preview", "local"],
+  "author": "",
+  "license": "MIT"
+}
