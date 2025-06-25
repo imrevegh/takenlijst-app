@@ -1074,8 +1074,21 @@ class TakenlijstApp {
             return;
         }
         
-        // Immediate redirect to Google - no delays
-        window.location.href = 'https://www.google.com';
+        // Clear auth by making a request with bad credentials, then redirect
+        fetch(window.location.origin, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Basic ' + btoa('invalid:invalid')
+            }
+        }).catch(() => {
+            // Auth cleared, now redirect to Google
+            window.location.href = 'https://www.google.com';
+        });
+        
+        // Fallback: redirect after short delay anyway
+        setTimeout(() => {
+            window.location.href = 'https://www.google.com';
+        }, 1000);
     }
 }
 
