@@ -5,7 +5,7 @@ const cheerio = require('cheerio');
 const fs = require('fs').promises;
 const path = require('path');
 const compression = require('compression');
-const basicAuth = require('express-basic-auth');
+const session = require('express-session');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,16 +16,39 @@ let memoryTasks = null;
 
 app.use(compression()); // Enable gzip compression
 app.use(express.json());
+app.use(cors());
 
-// Basic Authentication (before CORS)
-app.use(basicAuth({
-  users: { [process.env.AUTH_USER || 'admin']: process.env.AUTH_PASS || 'password' },
-  challenge: true,
-  realm: 'Takenlijst App'
+// Session configuration
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'takenlijst-secret-key-change-in-production',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production' && process.env.HTTPS === 'true',
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
 }));
 
-// CORS after authentication
-app.use(cors());
+// Auth credentials (use environment variables in production)
+const AUTH_CREDENTIALS = {
+  username: process.env.AUTH_USER || 'admin',
+  password: process.env.AUTH_PASS || 'password'
+};
+
+// Auth middleware
+function requireAuth(req, res, next) {
+  if (req.session && req.session.authenticated) {
+    return next();
+  }
+  
+  // If not authenticated, redirect to login
+  if (req.path.startsWith('/api/')) {
+    return res.status(401).json({ error: 'Authentication required' });
+  }
+  
+  return res.redirect('/login.html');
+}
 
 // Serve static files with appropriate caching
 app.use(express.static('public', {
@@ -192,8 +215,40 @@ async function getUrlMetadata(url) {
   }
 }
 
-// API Routes
-app.get('/api/tasks', async (req, res) => {
+// Auth Routes
+app.post('/auth/login', (req, res) => {
+  const { username, password } = req.body;
+  
+  if (username === AUTH_CREDENTIALS.username && password === AUTH_CREDENTIALS.password) {
+    req.session.authenticated = true;
+    req.session.username = username;
+    res.json({ success: true, message: 'Login successful' });
+  } else {
+    res.status(401).json({ error: 'Invalid credentials' });
+  }
+});
+
+app.post('/auth/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Logout failed' });
+    }
+    res.clearCookie('connect.sid'); // Clear session cookie
+    res.json({ success: true, message: 'Logout successful' });
+  });
+});
+
+// Root route - redirect to main app if authenticated, otherwise to login
+app.get('/', (req, res) => {
+  if (req.session && req.session.authenticated) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  } else {
+    res.redirect('/login.html');
+  }
+});
+
+// Protected API Routes (require authentication)
+app.get('/api/tasks', requireAuth, async (req, res) => {
   const data = await loadTasks();
   
   // Sort tasks: incomplete first, then by category, then by sortOrder
@@ -217,7 +272,7 @@ app.get('/api/tasks', async (req, res) => {
   res.json(data);
 });
 
-app.post('/api/tasks', async (req, res) => {
+app.post('/api/tasks', requireAuth, async (req, res) => {
   const data = await loadTasks();
   
   // New tasks get added to top of category
@@ -255,7 +310,7 @@ app.post('/api/tasks', async (req, res) => {
   res.json(newTask);
 });
 
-app.put('/api/tasks/:id', async (req, res) => {
+app.put('/api/tasks/:id', requireAuth, async (req, res) => {
   const data = await loadTasks();
   const taskIndex = data.tasks.findIndex(task => task.id === req.params.id);
   
@@ -290,19 +345,19 @@ app.put('/api/tasks/:id', async (req, res) => {
   res.json(data.tasks[taskIndex]);
 });
 
-app.delete('/api/tasks/:id', async (req, res) => {
+app.delete('/api/tasks/:id', requireAuth, async (req, res) => {
   const data = await loadTasks();
   data.tasks = data.tasks.filter(task => task.id !== req.params.id);
   await saveTasks(data);
   res.json({ success: true });
 });
 
-app.get('/api/categories', async (req, res) => {
+app.get('/api/categories', requireAuth, async (req, res) => {
   const data = await loadTasks();
   res.json(data.categories);
 });
 
-app.post('/api/categories', async (req, res) => {
+app.post('/api/categories', requireAuth, async (req, res) => {
   const data = await loadTasks();
   const categoryId = req.body.name.toLowerCase().replace(/\s+/g, '_');
   data.categories[categoryId] = {
@@ -313,7 +368,7 @@ app.post('/api/categories', async (req, res) => {
   res.json(data.categories[categoryId]);
 });
 
-app.put('/api/categories/:id', async (req, res) => {
+app.put('/api/categories/:id', requireAuth, async (req, res) => {
   const data = await loadTasks();
   const categoryId = req.params.id;
   
@@ -333,7 +388,7 @@ app.put('/api/categories/:id', async (req, res) => {
   res.json(data.categories[categoryId]);
 });
 
-app.delete('/api/categories/:id', async (req, res) => {
+app.delete('/api/categories/:id', requireAuth, async (req, res) => {
   const data = await loadTasks();
   
   // Move tasks from deleted category to 'algemeen'
@@ -349,7 +404,7 @@ app.delete('/api/categories/:id', async (req, res) => {
 });
 
 // Move task before another task using sortOrder
-app.put('/api/tasks/:id/move-before', async (req, res) => {
+app.put('/api/tasks/:id/move-before', requireAuth, async (req, res) => {
   try {
     const data = await loadTasks();
     const { targetTaskId } = req.body;
@@ -394,7 +449,7 @@ app.put('/api/tasks/:id/move-before', async (req, res) => {
 });
 
 // Move task after another task using sortOrder
-app.put('/api/tasks/:id/move-after', async (req, res) => {
+app.put('/api/tasks/:id/move-after', requireAuth, async (req, res) => {
   try {
     const data = await loadTasks();
     const { targetTaskId } = req.body;
@@ -439,7 +494,7 @@ app.put('/api/tasks/:id/move-after', async (req, res) => {
 });
 
 // Toggle favorite status of a task
-app.put('/api/tasks/:id/favorite', async (req, res) => {
+app.put('/api/tasks/:id/favorite', requireAuth, async (req, res) => {
   try {
     const data = await loadTasks();
     const taskId = req.params.id;
@@ -479,7 +534,7 @@ app.put('/api/tasks/:id/favorite', async (req, res) => {
 });
 
 // Import data endpoint
-app.post('/api/import', async (req, res) => {
+app.post('/api/import', requireAuth, async (req, res) => {
   try {
     const importData = req.body;
     
@@ -546,7 +601,7 @@ app.post('/api/import', async (req, res) => {
 });
 
 // Move task up/down using sortOrder system (keep for arrow buttons)
-app.put('/api/tasks/:id/move', async (req, res) => {
+app.put('/api/tasks/:id/move', requireAuth, async (req, res) => {
   try {
     const data = await loadTasks();
     const { direction } = req.body;
@@ -590,7 +645,7 @@ app.put('/api/tasks/:id/move', async (req, res) => {
 });
 
 // Fix sortOrder for all tasks
-app.post('/api/fix-sortorder', async (req, res) => {
+app.post('/api/fix-sortorder', requireAuth, async (req, res) => {
   try {
     const data = await loadTasks();
     
@@ -626,7 +681,7 @@ app.post('/api/fix-sortorder', async (req, res) => {
 });
 
 // Endpoint to start server (for auto-startup from frontend)
-app.post('/start-server', async (req, res) => {
+app.post('/start-server', requireAuth, async (req, res) => {
   // This endpoint exists mainly for the frontend to call when server isn't running
   // Since this endpoint is being called, the server is already running
   res.json({ success: true, message: 'Server is already running' });

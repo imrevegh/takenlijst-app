@@ -1068,31 +1068,42 @@ class TakenlijstApp {
     /**
      * Logout function - clears browser auth cache
      */
-    logout() {
-        // 1) Clear all client-side data first
-        this.clearAllData();
-        
-        // 2) Make screen white/empty immediately for security
-        document.body.innerHTML = `
-            <div style="
-                position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
-                background: #f5f5f5; display: flex; align-items: center; justify-content: center;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                z-index: 9999;
-            ">
-                <div style="text-align: center; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                    <h2 style="margin: 0 0 20px 0; color: #333;">🚪 Uitgelogd</h2>
-                    <p style="margin: 0; color: #666;">Inlogscherm wordt geladen...</p>
+    async logout() {
+        try {
+            // 1) Clear all client-side data first
+            this.clearAllData();
+            
+            // 2) Make screen white/empty immediately for security
+            document.body.innerHTML = `
+                <div style="
+                    position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
+                    background: #f5f5f5; display: flex; align-items: center; justify-content: center;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                    z-index: 9999;
+                ">
+                    <div style="text-align: center; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <h2 style="margin: 0 0 20px 0; color: #333;">🚪 Uitloggen...</h2>
+                        <p style="margin: 0; color: #666;">Session wordt beëindigd...</p>
+                    </div>
                 </div>
-            </div>
-        `;
-        
-        // 3) Show login screen by reloading
-        setTimeout(() => {
-            // Simple reload to show login screen
-            // Browser will ask for credentials since we cleared the data
-            window.location.reload();
-        }, 1500);
+            `;
+            
+            // 3) Call server logout endpoint
+            await fetch('/auth/logout', {
+                method: 'POST',
+                credentials: 'same-origin'
+            });
+            
+            // 4) Redirect to login page
+            setTimeout(() => {
+                window.location.href = '/login.html';
+            }, 1000);
+            
+        } catch (error) {
+            console.error('Logout error:', error);
+            // Fallback: redirect to login anyway
+            window.location.href = '/login.html';
+        }
     }
 
     /**
