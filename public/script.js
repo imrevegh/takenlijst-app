@@ -51,7 +51,7 @@ class TakenlijstApp {
         });
 
         // Controls
-        this.getElementById('sync-btn').addEventListener('click', () => this.syncData());
+        this.getElementById('logout-btn').addEventListener('click', () => this.logout());
         this.getElementById('toggle-completed').addEventListener('click', () => this.toggleCompleted());
         this.getElementById('dark-mode-toggle').addEventListener('click', () => this.toggleDarkMode());
         this.getElementById('search-input').addEventListener('input', (e) => this.filterTasks(e.target.value));
@@ -1066,46 +1066,29 @@ class TakenlijstApp {
     }
 
     /**
-     * Sync data with server
+     * Logout function - clears browser auth cache
      */
-    async syncData() {
-        const syncBtn = this.getElementById('sync-btn');
-        const originalText = syncBtn.textContent;
+    async logout() {
+        const logoutBtn = this.getElementById('logout-btn');
         
         try {
-            // Show loading state
-            syncBtn.textContent = '🔄 Syncing...';
-            syncBtn.disabled = true;
+            logoutBtn.textContent = '🚪 Uitloggen...';
+            logoutBtn.disabled = true;
             
-            // Reload data from server
-            await this.loadData();
+            // Show confirmation message
+            this.showMessage('Je wordt uitgelogd...', 'info');
             
-            // Force re-render everything to ensure fresh data
-            this.renderCategories();
-            this.renderTasks();
-            
-            // Restore active category if it still exists
-            if (this.activeCategory && this.categories[this.activeCategory]) {
-                this.setActiveCategory(this.activeCategory);
-            } else {
-                this.setActiveCategory('algemeen');
-            }
-            
-            // Show success message
-            this.showMessage('Data gesynchroniseerd!', 'success');
-            
-            // Briefly show success state
-            syncBtn.textContent = '✅ Synced';
+            // Method 1: Try to trigger browser logout by accessing a logout URL
+            // This forces the browser to forget the basic auth credentials
             setTimeout(() => {
-                syncBtn.textContent = originalText;
-            }, 1500);
+                window.location.href = 'https://logout:logout@' + window.location.host + window.location.pathname;
+            }, 1000);
             
         } catch (error) {
-            console.error('Sync failed:', error);
-            this.showMessage('Synchronisatie mislukt', 'error');
-            syncBtn.textContent = originalText;
-        } finally {
-            syncBtn.disabled = false;
+            console.error('Logout failed:', error);
+            this.showMessage('Uitloggen mislukt', 'error');
+            logoutBtn.textContent = '🚪 Uitloggen';
+            logoutBtn.disabled = false;
         }
     }
 }
