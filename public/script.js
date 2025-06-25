@@ -258,7 +258,6 @@ class TakenlijstApp {
 
             if (response.ok) {
                 const result = await response.json();
-                console.log(`Task "${task.text}" favorite status toggled to: ${result.favorite}`);
                 // Optimistic update - update local state immediately
                 task.favorite = result.favorite;
                 this.renderTasks();
@@ -1271,14 +1270,14 @@ class TakenlijstApp {
         try {
             localStorage.clear();
         } catch (e) {
-            console.log('Could not clear localStorage');
+            // Ignore localStorage errors
         }
         
         // Clear sessionStorage
         try {
             sessionStorage.clear();
         } catch (e) {
-            console.log('Could not clear sessionStorage');
+            // Ignore sessionStorage errors
         }
     }
 }

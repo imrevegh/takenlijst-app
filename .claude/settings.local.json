@@ -43,7 +43,11 @@
       "Bash(git push:*)",
       "Bash(npm install:*)",
       "WebFetch(domain:taken-qzz6.onrender.com)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(find:*)",
+      "Bash(pm2 start:*)",
+      "Bash(gh api:*)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": []
   }

@@ -172,7 +172,6 @@ async function saveTasks(data) {
     // Store in memory for production (files don't persist on Render)
     if (process.env.NODE_ENV === 'production') {
       memoryTasks = data;
-      console.log('Tasks saved to memory (production mode)');
       return;
     }
     await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2));
@@ -196,6 +195,20 @@ function getFallbackImage(url) {
   // Choose fallback based on URL hash for consistency
   const hash = url.split('').reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a; }, 0);
   return fallbackImages[Math.abs(hash) % fallbackImages.length];
+}
+
+// Extract URLs from text and get metadata
+async function extractTaskLinks(text) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const urls = text.match(urlRegex) || [];
+  const links = [];
+  
+  for (const url of urls) {
+    const metadata = await getUrlMetadata(url);
+    links.push(metadata);
+  }
+  
+  return links;
 }
 
 // Extract metadata from URL
@@ -348,13 +361,7 @@ app.post('/api/tasks', requireAuth, async (req, res) => {
   };
   
   // Extract links from task text and get metadata
-  const urlRegex = /(https?:\/\/[^\s]+)/g;
-  const urls = newTask.text.match(urlRegex) || [];
-  
-  for (const url of urls) {
-    const metadata = await getUrlMetadata(url);
-    newTask.links.push(metadata);
-  }
+  newTask.links = await extractTaskLinks(newTask.text);
   
   data.tasks.push(newTask);
   await saveTasks(data);
@@ -382,14 +389,7 @@ app.put('/api/tasks/:id', requireAuth, async (req, res) => {
   
   // Re-extract links if text changed
   if (req.body.text) {
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    const urls = req.body.text.match(urlRegex) || [];
-    data.tasks[taskIndex].links = [];
-    
-    for (const url of urls) {
-      const metadata = await getUrlMetadata(url);
-      data.tasks[taskIndex].links.push(metadata);
-    }
+    data.tasks[taskIndex].links = await extractTaskLinks(req.body.text);
   }
   
   await saveTasks(data);
@@ -605,7 +605,7 @@ app.post('/api/import', requireAuth, async (req, res) => {
     try {
       await fs.writeFile(backupPath, JSON.stringify(currentData, null, 2));
     } catch (backupError) {
-      console.warn('Could not create backup:', backupError);
+      // Backup creation failed - continue with import
     }
     
     // Prepare data for import
@@ -740,20 +740,14 @@ app.post('/start-server', requireAuth, async (req, res) => {
 
 // Start server
 async function startServer() {
-  console.log('🚀 Takenlijst server wordt opgestart...');
-  
   try {
     await ensureDataDir();
-    console.log('✅ Data directory gereed');
-    
-    // Verify we can load tasks
     await loadTasks();
-    console.log('✅ Tasks geladen');
     
     app.listen(PORT, () => {
-      console.log(`🌐 Takenlijst app draait op http://localhost:${PORT}`);
-      console.log('✅ Server is volledig operationeel!');
-      console.log('Druk op Ctrl+C om te stoppen');
+      if (process.env.NODE_ENV !== 'production') {
+        console.log(`🌐 Takenlijst app draait op http://localhost:${PORT}`);
+      }
     });
     
   } catch (error) {
