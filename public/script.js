@@ -1074,21 +1074,46 @@ class TakenlijstApp {
             return;
         }
         
-        // Clear auth by making a request with bad credentials, then redirect
-        fetch(window.location.origin, {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Basic ' + btoa('invalid:invalid')
-            }
-        }).catch(() => {
-            // Auth cleared, now redirect to Google
-            window.location.href = 'https://www.google.com';
-        });
+        // Immediately hide all content and show logout screen
+        document.body.innerHTML = `
+            <div style="
+                position: fixed; 
+                top: 0; left: 0; right: 0; bottom: 0; 
+                background: #fff; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                z-index: 9999;
+            ">
+                <div style="text-align: center;">
+                    <h2>🚪 Uitgelogd</h2>
+                    <p>Je wordt doorgestuurd...</p>
+                    <div style="margin-top: 20px;">
+                        <div style="
+                            width: 40px; 
+                            height: 40px; 
+                            border: 4px solid #f3f3f3; 
+                            border-top: 4px solid #0078d4; 
+                            border-radius: 50%; 
+                            animation: spin 1s linear infinite; 
+                            margin: 0 auto;
+                        "></div>
+                    </div>
+                </div>
+            </div>
+            <style>
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            </style>
+        `;
         
-        // Fallback: redirect after short delay anyway
+        // Redirect to Google after showing logout screen
         setTimeout(() => {
             window.location.href = 'https://www.google.com';
-        }, 1000);
+        }, 1500);
     }
 }
 
