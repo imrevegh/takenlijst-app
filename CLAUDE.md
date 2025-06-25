@@ -4,40 +4,42 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is "Takenlijst App" - a local task management application with link preview functionality. The app runs locally as a Node.js/Express server serving a categorized task list with drag-and-drop functionality, automatic URL metadata extraction, and data persistence.
+This is "Takenlijst App" - a task management application with link preview functionality. The app runs as a Node.js/Express server serving a categorized task list with drag-and-drop functionality, automatic URL metadata extraction, and environment-aware data persistence. **CRITICAL: The app is deployed on Render.com, not run locally.**
 
 ## Architecture
 
 ### Core Components
-- **server.js**: Express server handling REST API and metadata extraction
-- **public/script.js**: Frontend TakenlijstApp class managing UI interactions
-- **public/index.html**: Single-page HTML interface
-- **public/style.css**: CSS with dark/light theme support
-- **data/tasks.json**: JSON data store for tasks and categories
+- **server.js**: Express server with session-based authentication, REST API, and URL metadata extraction
+- **public/script.js**: Frontend TakenlijstApp class managing UI interactions with SortableJS
+- **public/index.html**: Main application interface
+- **public/login.html**: Authentication interface
+- **public/style.css**: CSS with comprehensive styling and visual feedback
+- **data/tasks.json**: JSON data store (local development only - see deployment notes)
 
 ### Key Features
-- **Categorized Tasks**: Default "algemeen" category plus custom categories with colors
+- **Session Authentication**: Basic auth with session management and automatic logout
+- **Categorized Tasks**: Default categories plus custom categories with color coding
 - **Link Previews**: Automatic OpenGraph/Twitter metadata extraction from URLs in task text
-- **Drag & Drop**: Task reordering within/between categories using sortOrder system
-- **Data Persistence**: File-based JSON storage in data/ directory
-- **Theme Support**: Dark/light mode with localStorage persistence
+- **Advanced Drag & Drop**: SortableJS-based task reordering within/between categories
+- **Star System**: Favorites boost tasks to top position, unfavoriting preserves position
+- **Environment-Aware Persistence**: File storage locally, memory storage on Render
 
 ## Development Commands
 
-### Starting the Application
+### Local Development
+- `npm install` - Install dependencies (Express, Cheerio, Axios, CORS, compression, express-session)
 - `npm start` - Start production server on port 3000
-- `npm run dev` - Start development server with nodemon
-- `./start-takenlijst.sh` - Comprehensive startup script with PM2 support
+- `npm run dev` - Start development server with nodemon (recommended for development)
 
-### Installation
-- `npm install` - Install dependencies (Express, Cheerio, Axios, CORS, compression)
-- Optional: `npm install -g pm2` - For production process management
+### Deployment
+- **Production Platform**: Render.com (automatic deployment on git push)
+- **Environment Detection**: `IS_RENDER = process.env.RENDER || process.env.NODE_ENV === 'production'`
+- **Data Storage**: Memory-only on Render (ephemeral file system), files in local development
 
-### Server Management (with PM2)
-- `pm2 list` - Show running processes  
-- `pm2 stop takenlijst` - Stop the app
-- `pm2 logs takenlijst` - View logs
-- `pm2 restart takenlijst` - Restart app
+### Authentication
+- **Credentials**: Set via `AUTH_USER` and `AUTH_PASS` environment variables
+- **Default**: username: "admin", password: "password" (change in production)
+- **Session Management**: Express-session with configurable session secret
 
 ## API Endpoints
 
@@ -48,7 +50,7 @@ This is "Takenlijst App" - a local task management application with link preview
 - `DELETE /api/tasks/:id` - Delete task
 - `PUT /api/tasks/:id/move-before` - Move task before another task (drag-and-drop)
 - `PUT /api/tasks/:id/move-after` - Move task after another task (drag-and-drop)
-- `PUT /api/tasks/:id/move` - Move task up/down using sortOrder (legacy arrow buttons)
+- `PUT /api/tasks/:id/move` - Move task up/down using sortOrder (legacy)
 - `PUT /api/tasks/:id/favorite` - Toggle favorite status
 
 ### Categories  
@@ -57,7 +59,9 @@ This is "Takenlijst App" - a local task management application with link preview
 - `PUT /api/categories/:id` - Update category name/color
 - `DELETE /api/categories/:id` - Delete category (moves tasks to "algemeen")
 
-### Data Management
+### Authentication & Data Management
+- `POST /auth/login` - Authenticate with username/password
+- `POST /auth/logout` - End session and clear authentication
 - `POST /api/import` - Import data with automatic backup creation
 
 ## Data Structure
@@ -68,9 +72,9 @@ This is "Takenlijst App" - a local task management application with link preview
 - `completed`: Boolean completion status
 - `category`: Category identifier (defaults to "algemeen")
 - `createdAt`: ISO timestamp of creation
-- `lastModified`: Timestamp for drag-and-drop ordering (newer = higher position)
-- `sortOrder`: Numeric order for legacy arrow-button movement
-- `favorite`: Boolean favorite status (favorites appear first in category)
+- `lastModified`: Timestamp for optimistic updates and conflict resolution
+- `sortOrder`: Numeric order for positioning (lower = higher in list)
+- `favorite`: Boolean favorite status (star system for boosting to top)
 - `links[]`: Array of extracted link metadata objects
 
 ### Categories
@@ -85,34 +89,62 @@ This is "Takenlijst App" - a local task management application with link preview
 
 ## Critical Development Notes
 
-### Data Integrity & Backup
-- **ALWAYS backup before major changes**: `cp public/script.js public/script_backup.js` 
-- **Restore on issues**: `cp public/script_backup.js public/script.js` if tasks disappear
-- **File Storage**: Tasks persist to data/tasks.json with atomic writes - data loss is critical to avoid
+### Render.com Deployment Architecture
+- **CRITICAL**: App runs on Render.com with ephemeral file system
+- **Data Persistence**: Uses memory storage on Render (`memoryTasks` variable)
+- **File writes on Render are temporary** and lost on restart/deployment
+- **Environment Detection**: `IS_RENDER` flag determines storage method
+- **Local Development**: Uses file system (`data/tasks.json`) 
+- **Production**: Uses memory-only storage for persistence between requests
+
+### Data Persistence & Critical Fixes
+- **saveTasks() Function**: Environment-aware saving with memory + file strategies
+- **loadTasks() Function**: Prioritizes memory storage on Render over file reads
+- **Cache Management**: 30-second cache (`tasksCache`) for performance
+- **NEVER assume file persistence on Render** - all data is memory-based
+
+### Star/Favorite System Implementation
+- **Star ON**: Task jumps to `sortOrder = 1`, other tasks shift down (+1)
+- **Star OFF**: Task stays in current position (`sortOrder` unchanged)
+- **Client Sorting**: Only by `sortOrder`, no favorite-first logic
+- **Behavior**: "Boost to top" rather than "always on top"
 
 ### Drag-and-Drop System Architecture  
-- **Two Movement APIs**: `/api/tasks/:id/move-before` and `/api/tasks/:id/move-after` for drag-and-drop positioning
-- **Legacy Arrow Buttons**: `/api/tasks/:id/move` with `direction: up/down` for manual reordering
-- **Task Ordering**: Uses `lastModified` timestamps for drag-and-drop, `sortOrder` for arrows
-- **Drop Indicators**: "Drop hier" visual feedback managed by `showDropIndicator()` and `hideDropIndicator()`
+- **SortableJS Integration**: Modern drag-and-drop with `onMove` and `onEnd` callbacks
+- **Cross-Category Drops**: Uses `document.elementFromPoint()` for accurate drop detection
+- **Movement APIs**: `/api/tasks/:id/move-before` and `/api/tasks/:id/move-after`
+- **Visual Feedback**: `.category-drop-target` highlighting during drag operations
+- **Important**: Uses SortableJS events, not conflicting mouse events
 
-### Edit Functionality Implementation
-- **Inline Editing**: Double-click tasks opens textarea editor in-place
-- **Text Selection**: Must preserve native text selection - avoid `stopPropagation()` on mousedown/click
-- **Save Methods**: Ctrl+Enter to save, Escape to cancel, blur to auto-save after 150ms delay
-- **Critical**: Never disable `draggable` attribute during editing - causes task disappearance
-
-### Frontend State Management
-- **Task Rendering**: `renderTasks()` rebuilds entire task list - expensive but ensures consistency
-- **Category Filtering**: `activeCategory` determines visible tasks, null shows all
-- **Search Integration**: Search overrides category filtering when active
-- **Selection System**: Multi-select with Ctrl+click, visual feedback via CSS classes
+### Frontend State Management & Optimistic Updates
+- **Optimistic Updates**: UI changes immediately, server sync in background
+- **Error Handling**: Reverts optimistic changes on server errors
+- **Task Rendering**: `renderTasks()` rebuilds entire list for consistency
+- **Inline Editing**: Double-click with textarea replacement, preserves text selection
+- **Authentication**: Automatic redirect to `/login.html` on 401 responses
 
 ## Technical Implementation Details
 
-- **Port**: Application runs on port 3000
-- **Fallback Images**: Data URI fallbacks when link previews fail to load images  
-- **Compression**: Gzip enabled for performance
+### Server Configuration
+- **Port**: Application runs on port 3000 (or `process.env.PORT` on Render)
+- **Session Security**: Configurable session secret via `SESSION_SECRET` environment variable
+- **Request Timeouts**: 30-second timeouts for better performance after inactivity
+- **Compression**: Gzip enabled for performance optimization
 - **CORS**: Enabled for development flexibility
-- **Link Detection**: Automatic URL regex matching with metadata extraction via Cheerio
-- **Backup System**: Import creates timestamped backups in data/ directory
+
+### Link Preview System
+- **URL Detection**: Automatic regex matching in task text
+- **Metadata Extraction**: Uses Cheerio for OpenGraph/Twitter card parsing
+- **Fallback Images**: Data URI fallbacks when external images fail to load
+- **Performance**: Async extraction without blocking task creation
+
+### Logging & Debugging
+- **Environment Logging**: Clear indicators for Render vs Local environments
+- **Save Operations**: Comprehensive logging with 💾 emoji prefix
+- **Authentication**: Session state and redirect logging
+- **Error Handling**: Detailed error logs for troubleshooting
+
+### Important Git Workflow
+- **Auto-Deploy**: Every `git push` triggers automatic Render deployment
+- **Memory Reset**: Each deployment clears in-memory data on Render
+- **Critical**: Always commit and push changes immediately after implementation
