@@ -258,7 +258,10 @@ class TakenlijstApp {
             if (response.ok) {
                 const result = await response.json();
                 console.log(`Task "${task.text}" favorite status toggled to: ${result.favorite}`);
-                await this.loadData();
+                // Optimistic update - update local state immediately
+                task.favorite = result.favorite;
+                this.renderTasks();
+                this.renderCategories(); // Update count
             }
         } catch (error) {
             console.error('Error toggling favorite:', error);
@@ -376,9 +379,13 @@ class TakenlijstApp {
             });
 
             if (response.ok) {
+                const newCategory = await response.json();
                 nameInput.value = '';
                 colorInput.value = '#0078d4';
-                await this.loadData();
+                // Optimistic update - add to local categories
+                const categoryId = name.toLowerCase().replace(/\s+/g, '_');
+                this.categories[categoryId] = newCategory;
+                this.renderCategories();
                 this.showMessage('Categorie toegevoegd!', 'success');
             }
         } catch (error) {
@@ -396,7 +403,15 @@ class TakenlijstApp {
         try {
             const response = await fetch(`/api/categories/${categoryId}`, { method: 'DELETE' });
             if (response.ok) {
-                await this.loadData();
+                // Optimistic update - remove from local categories and move tasks
+                delete this.categories[categoryId];
+                this.tasks.forEach(task => {
+                    if (task.category === categoryId) {
+                        task.category = 'algemeen';
+                    }
+                });
+                this.renderCategories();
+                this.renderTasks();
                 this.showMessage('Categorie verwijderd', 'success');
             }
         } catch (error) {
@@ -878,7 +893,10 @@ class TakenlijstApp {
                 });
                 
                 if (response.ok) {
-                    await this.loadData();
+                    // Optimistic update - task category already changed by drag
+                    this.draggedTask.category = targetCategoryId;
+                    this.renderCategories(); // Update counts
+                    this.showMessage('Taak verplaatst naar categorie', 'success');
                 }
             } catch (error) {
                 console.error('Error moving task to category:', error);
@@ -957,13 +975,18 @@ class TakenlijstApp {
             const newName = input.value.trim();
             if (newName && newName !== originalName) {
                 try {
-                    await fetch(`/api/categories/${categoryId}`, {
+                    const response = await fetch(`/api/categories/${categoryId}`, {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ name: newName })
                     });
                     
-                    await this.loadData();
+                    if (response.ok) {
+                        // Optimistic update - update local category name
+                        this.categories[categoryId].name = newName;
+                        this.renderCategories();
+                        cancelEdit();
+                    }
                 } catch (error) {
                     console.error('Error updating category:', error);
                     cancelEdit();
