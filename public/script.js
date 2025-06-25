@@ -1083,24 +1083,11 @@ class TakenlijstApp {
             // Show message
             this.showMessage('Je wordt uitgelogd...', 'info');
             
-            // Clear auth and redirect to Google for privacy
+            // Clear auth and redirect to Google immediately
             setTimeout(() => {
-                // Try multiple methods to clear auth
-                const baseUrl = window.location.protocol + '//' + window.location.host;
-                
-                // Method 1: Try invalid credentials to clear auth
-                const tempFrame = document.createElement('iframe');
-                tempFrame.style.display = 'none';
-                tempFrame.src = baseUrl.replace('://', '://invalid:invalid@') + '/';
-                document.body.appendChild(tempFrame);
-                
-                // After clearing auth, redirect to Google
-                setTimeout(() => {
-                    document.body.removeChild(tempFrame);
-                    window.location.href = 'https://www.google.com';
-                }, 1000);
-                
-            }, 1000);
+                // Direct redirect to Google with auth clearing attempt
+                window.location.href = 'https://www.google.com';
+            }, 500);
             
         } catch (error) {
             console.error('Logout error:', error);
