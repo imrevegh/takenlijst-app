@@ -17,6 +17,10 @@ let tasksCache = null;
 let cacheTimestamp = 0;
 const CACHE_DURATION = 30000; // 30 seconds cache
 
+// Detect if running on Render (ephemeral file system)
+const IS_RENDER = process.env.RENDER || process.env.NODE_ENV === 'production';
+console.log('🚀 Environment:', IS_RENDER ? 'RENDER (memory-only)' : 'LOCAL (file system)');
+
 app.use(compression()); // Enable gzip compression
 app.use(express.json({ limit: '10mb' }));
 app.use(cors());
@@ -89,8 +93,8 @@ async function loadTasks() {
     return tasksCache;
   }
   
-  // Return from memory in production if available
-  if (process.env.NODE_ENV === 'production' && memoryTasks) {
+  // Return from memory on Render if available
+  if (IS_RENDER && memoryTasks) {
     tasksCache = memoryTasks;
     cacheTimestamp = now;
     return memoryTasks;
@@ -150,11 +154,24 @@ async function loadTasks() {
     
     return parsed;
   } catch (error) {
-    const defaultData = { categories: { 'algemeen': { name: 'Algemeen', color: '#3498db', tasks: [] } }, tasks: [] };
-    // Store default data in memory for production
-    if (process.env.NODE_ENV === 'production') {
+    console.log('📁 File not found or error reading, using default data');
+    const defaultData = { 
+      categories: { 
+        'algemeen': { name: 'Algemeen', color: '#3498db' },
+        'crypto': { name: 'Crypto', color: '#f39c12' },
+        'klussen': { name: 'Klussen', color: '#e74c3c' },
+        'projecten': { name: 'Projecten', color: '#9b59b6' },
+        'dagelijks': { name: 'Dagelijks', color: '#2ecc71' }
+      }, 
+      tasks: [] 
+    };
+    
+    // Store default data in memory for Render
+    if (IS_RENDER) {
       memoryTasks = defaultData;
+      console.log('🚀 Render detected - Default data stored in memory');
     }
+    
     // Cache default data too
     tasksCache = defaultData;
     cacheTimestamp = now;
@@ -162,40 +179,45 @@ async function loadTasks() {
   }
 }
 
-// Save tasks to JSON file
+// Save tasks to memory (and optionally file)
 async function saveTasks(data) {
-  console.log('🔥 EMERGENCY SAVE ATTEMPT - Starting...');
+  console.log('💾 SAVE ATTEMPT - Environment:', IS_RENDER ? 'RENDER' : 'LOCAL');
   
   try {
     // Clear cache when saving new data
     tasksCache = null;
     cacheTimestamp = 0;
     
-    // FORCE file write with immediate flush
-    const jsonData = JSON.stringify(data, null, 2);
-    console.log('🔥 Writing data length:', jsonData.length);
-    
-    await fs.writeFile(DATA_FILE, jsonData, { encoding: 'utf8', flag: 'w' });
-    
-    // Force flush to disk
-    const fd = await fs.open(DATA_FILE, 'r+');
-    await fd.sync();
-    await fd.close();
-    
-    console.log('🔥 EMERGENCY SAVE SUCCESS - File written and synced');
-    
-    // Also store in memory as backup
+    // ALWAYS store in memory first (critical for Render)
     memoryTasks = data;
+    console.log('💾 Memory save SUCCESS - Tasks stored in memory');
     
-    // Verify file was actually written
-    const stats = await fs.stat(DATA_FILE);
-    console.log('🔥 File verification - Size:', stats.size, 'Modified:', stats.mtime);
+    // Only attempt file write in local development
+    if (!IS_RENDER) {
+      const jsonData = JSON.stringify(data, null, 2);
+      console.log('💾 Writing to file - Data length:', jsonData.length);
+      
+      await fs.writeFile(DATA_FILE, jsonData, { encoding: 'utf8', flag: 'w' });
+      
+      // Force flush to disk
+      const fd = await fs.open(DATA_FILE, 'r+');
+      await fd.sync();
+      await fd.close();
+      
+      console.log('💾 File save SUCCESS - Data written and synced');
+      
+      // Verify file was actually written
+      const stats = await fs.stat(DATA_FILE);
+      console.log('💾 File verification - Size:', stats.size, 'Modified:', stats.mtime);
+    } else {
+      console.log('💾 Skipping file write on Render (ephemeral file system)');
+    }
     
   } catch (error) {
-    console.error('🔥 EMERGENCY SAVE FAILED:', error);
-    // Fallback to memory if file write fails
+    console.error('💾 SAVE ERROR:', error);
+    // Ensure memory storage succeeds even if file write fails
     memoryTasks = data;
-    throw error; // Propagate error so caller knows it failed
+    console.log('💾 Fallback to memory-only storage');
   }
 }
 
