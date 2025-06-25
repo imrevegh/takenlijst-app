@@ -12,15 +12,17 @@ const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, 'data', 'tasks.json');
 
 app.use(compression()); // Enable gzip compression
-app.use(cors());
 app.use(express.json());
 
-// Basic Authentication
+// Basic Authentication (before CORS)
 app.use(basicAuth({
   users: { [process.env.AUTH_USER || 'admin']: process.env.AUTH_PASS || 'password' },
   challenge: true,
   realm: 'Takenlijst App'
 }));
+
+// CORS after authentication
+app.use(cors());
 
 // Serve static files with appropriate caching
 app.use(express.static('public', {
