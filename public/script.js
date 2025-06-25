@@ -1076,29 +1076,23 @@ class TakenlijstApp {
         document.body.innerHTML = `
             <div style="
                 position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
-                background: white; 
+                background: #f5f5f5; display: flex; align-items: center; justify-content: center;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
                 z-index: 9999;
-            "></div>
+            ">
+                <div style="text-align: center; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <h2 style="margin: 0 0 20px 0; color: #333;">🚪 Uitgelogd</h2>
+                    <p style="margin: 0; color: #666;">Inlogscherm wordt geladen...</p>
+                </div>
+            </div>
         `;
         
-        // 3) Clear auth and show login screen
+        // 3) Show login screen by reloading
         setTimeout(() => {
-            // Try to clear auth by making request with invalid credentials
-            fetch(window.location.origin, {
-                method: 'GET',
-                headers: {
-                    'Authorization': 'Basic ' + btoa('invalid:invalid')
-                }
-            }).catch(() => {
-                // Auth cleared, reload page to show login
-                window.location.reload();
-            });
-            
-            // Fallback: reload anyway after short delay
-            setTimeout(() => {
-                window.location.reload();
-            }, 1000);
-        }, 500);
+            // Simple reload to show login screen
+            // Browser will ask for credentials since we cleared the data
+            window.location.reload();
+        }, 1500);
     }
 
     /**
