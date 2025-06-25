@@ -47,7 +47,8 @@
       "Bash(find:*)",
       "Bash(pm2 start:*)",
       "Bash(gh api:*)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(ls:*)"
     ],
     "deny": []
   }
