@@ -217,7 +217,12 @@ header h1 {
 
 @media (max-width: 768px) {
     .mobile-overlay {
-        display: block;
+        display: none; /* Hidden by default on mobile */
+    }
+    
+    .mobile-overlay.active {
+        display: block; /* Only show when menu is active */
+        opacity: 1;
     }
 }
 
@@ -956,6 +961,8 @@ select:focus, input[type="text"]:focus {
         padding-top: 56px;
         padding-left: 16px;
         padding-right: 16px;
+        position: relative; /* Ensure clickable elements work */
+        z-index: 1; /* Above any potential overlay issues */
         padding-bottom: 24px;
     }
     
