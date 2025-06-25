@@ -26,7 +26,6 @@ class TakenlijstApp {
         await this.checkAuth();
         
         this.setupEventListeners();
-        this.loadDarkMode();
         this.initDragAndDrop();
         await this.loadData();
         this.setActiveCategory('algemeen');
@@ -78,7 +77,6 @@ class TakenlijstApp {
         this.getElementById('mobile-overlay').addEventListener('click', () => this.closeMobileMenu());
         this.getElementById('logout-btn').addEventListener('click', () => this.logout());
         this.getElementById('toggle-completed').addEventListener('click', () => this.toggleCompleted());
-        this.getElementById('dark-mode-toggle').addEventListener('click', () => this.toggleDarkMode());
         this.getElementById('search-input').addEventListener('input', (e) => this.filterTasks(e.target.value));
         
         // Import/Export
@@ -402,32 +400,11 @@ class TakenlijstApp {
     toggleCompleted() {
         this.showCompleted = !this.showCompleted;
         const button = this.getElementById('toggle-completed');
-        button.textContent = this.showCompleted ? 'Verberg afgevinkte taken' : 'Toon afgevinkte taken';
+        button.textContent = this.showCompleted ? '🙈' : '👁️';
+        button.title = this.showCompleted ? 'Verberg afgevinkte taken' : 'Toon afgevinkte taken';
         this.renderTasks();
     }
 
-    /**
-     * Toggle dark mode
-     */
-    toggleDarkMode() {
-        const isDark = document.documentElement.dataset.theme === 'dark';
-        const newTheme = isDark ? 'light' : 'dark';
-        document.documentElement.dataset.theme = newTheme;
-        localStorage.setItem('darkMode', newTheme === 'dark');
-        
-        const button = this.getElementById('dark-mode-toggle');
-        button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-    }
-
-    /**
-     * Load dark mode preference
-     */
-    loadDarkMode() {
-        const isDark = localStorage.getItem('darkMode') === 'true';
-        document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
-        const button = this.getElementById('dark-mode-toggle');
-        button.textContent = isDark ? '☀️' : '🌙';
-    }
 
     /**
      * Filter tasks by search term
