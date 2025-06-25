@@ -9,7 +9,10 @@
 </head>
 <body>
     <header>
-        <h1>📝 Takenlijst</h1>
+        <div class="header-left">
+            <button id="mobile-menu-toggle" class="mobile-menu-btn">☰</button>
+            <h1>📝 Takenlijst</h1>
+        </div>
         <div class="header-controls">
             <button id="logout-btn" class="btn-secondary">🚪 Uitloggen</button>
             <button id="export-btn" class="btn-secondary">📤 Export</button>
@@ -20,6 +23,8 @@
         </div>
     </header>
 
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    
     <div class="container">
         <div class="sidebar">
             <div class="category-section">

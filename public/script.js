@@ -74,6 +74,8 @@ class TakenlijstApp {
         });
 
         // Controls
+        this.getElementById('mobile-menu-toggle').addEventListener('click', () => this.toggleMobileMenu());
+        this.getElementById('mobile-overlay').addEventListener('click', () => this.closeMobileMenu());
         this.getElementById('logout-btn').addEventListener('click', () => this.logout());
         this.getElementById('toggle-completed').addEventListener('click', () => this.toggleCompleted());
         this.getElementById('dark-mode-toggle').addEventListener('click', () => this.toggleDarkMode());
@@ -411,6 +413,11 @@ class TakenlijstApp {
         this.updateBackgroundColor();
         this.renderCategories();
         this.renderTasks();
+        
+        // Close mobile menu after category selection
+        if (window.innerWidth <= 768) {
+            this.closeMobileMenu();
+        }
     }
 
     /**
@@ -1146,6 +1153,32 @@ class TakenlijstApp {
             // Fallback: redirect to login anyway
             window.location.replace('/login.html');
         }
+    }
+
+    /**
+     * Toggle mobile menu
+     */
+    toggleMobileMenu() {
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = this.getElementById('mobile-overlay');
+        
+        sidebar.classList.toggle('mobile-open');
+        overlay.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = sidebar.classList.contains('mobile-open') ? 'hidden' : '';
+    }
+    
+    /**
+     * Close mobile menu
+     */
+    closeMobileMenu() {
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = this.getElementById('mobile-overlay');
+        
+        sidebar.classList.remove('mobile-open');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
     }
 
     /**
