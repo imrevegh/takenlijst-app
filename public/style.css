@@ -882,6 +882,7 @@ select:focus, input[type="text"]:focus {
     /* Convert desktop layout to mobile app layout */
     .container {
         flex-direction: column;
+        pointer-events: auto; /* Ensure container is interactive */
     }
     
     /* Mobile Header */
@@ -890,6 +891,7 @@ select:focus, input[type="text"]:focus {
         height: 56px;
         padding: 0 16px;
         z-index: 1000;
+        pointer-events: auto; /* Ensure header is clickable */
     }
     
     .header-left h1 {
@@ -958,12 +960,13 @@ select:focus, input[type="text"]:focus {
     /* Mobile Main Content */
     .main-content {
         margin-left: 0;
-        padding-top: 56px;
+        padding-top: 72px; /* More space to avoid header overlap */
         padding-left: 16px;
         padding-right: 16px;
         position: relative; /* Ensure clickable elements work */
         z-index: 1; /* Above any potential overlay issues */
         padding-bottom: 24px;
+        pointer-events: auto; /* Ensure content is clickable */
     }
     
     .task-area {
