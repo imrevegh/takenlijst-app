@@ -1117,9 +1117,17 @@ class TakenlijstApp {
                 credentials: 'same-origin'
             });
             
-            // 4) Redirect to login page and replace history
+            // 4) Clear history and redirect to login page
             setTimeout(() => {
-                window.location.replace('/login.html');
+                // Clear as much history as possible
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, '', '/login.html');
+                    // Try to clear forward history too
+                    window.history.pushState(null, '', '/login.html');
+                    window.location.replace('/login.html');
+                } else {
+                    window.location.replace('/login.html');
+                }
             }, 1000);
             
         } catch (error) {

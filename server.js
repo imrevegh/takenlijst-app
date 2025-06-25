@@ -247,10 +247,26 @@ app.post('/auth/logout', (req, res) => {
 // Root route - redirect to main app if authenticated, otherwise to login
 app.get('/', (req, res) => {
   if (req.session && req.session.authenticated) {
+    // Add no-cache headers to prevent browser caching of authenticated pages
+    res.set({
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    });
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
   } else {
     res.redirect('/login.html');
   }
+});
+
+// Serve index.html with no-cache headers when requested directly
+app.get('/index.html', requireAuth, (req, res) => {
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma': 'no-cache',
+    'Expires': '0'
+  });
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Protected API Routes (require authentication)
