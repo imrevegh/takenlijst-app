@@ -229,13 +229,19 @@ app.post('/auth/login', (req, res) => {
 });
 
 app.post('/auth/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      return res.status(500).json({ error: 'Logout failed' });
-    }
-    res.clearCookie('connect.sid'); // Clear session cookie
-    res.json({ success: true, message: 'Logout successful' });
-  });
+  if (req.session) {
+    req.session.destroy((err) => {
+      if (err) {
+        console.error('Session destroy error:', err);
+        return res.status(500).json({ error: 'Logout failed' });
+      }
+      res.clearCookie('connect.sid'); // Clear session cookie
+      res.json({ success: true, message: 'Logout successful' });
+    });
+  } else {
+    // No session to destroy
+    res.json({ success: true, message: 'Already logged out' });
+  }
 });
 
 // Root route - redirect to main app if authenticated, otherwise to login
