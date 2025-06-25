@@ -15,6 +15,8 @@ class TakenlijstApp {
         this.sortableInstance = null;
         this.draggedTask = null;
         this.searchTimeout = null;
+        this.dataLoadInProgress = false;
+        this.lastServerUpdate = Date.now();
         
         this.init();
     }
@@ -103,6 +105,12 @@ class TakenlijstApp {
      * Load tasks and categories from the server with retry logic
      */
     async loadData() {
+        // Prevent multiple simultaneous loads
+        if (this.dataLoadInProgress) {
+            return;
+        }
+        this.dataLoadInProgress = true;
+        
         const maxRetries = 3;
         let retryCount = 0;
         
@@ -130,8 +138,10 @@ class TakenlijstApp {
                 const data = await response.json();
                 this.tasks = data.tasks || [];
                 this.categories = data.categories || {};
+                this.lastServerUpdate = Date.now();
                 this.renderCategories();
                 this.renderTasks();
+                this.dataLoadInProgress = false;
                 return; // Success, exit retry loop
                 
             } catch (error) {
@@ -140,6 +150,7 @@ class TakenlijstApp {
                 
                 if (retryCount >= maxRetries) {
                     console.error('Server not responding after multiple attempts');
+                    this.dataLoadInProgress = false;
                     await this.startServerAndRetry();
                     return;
                 }
@@ -167,6 +178,25 @@ class TakenlijstApp {
         
         if (!text) return;
 
+        // Create optimistic task immediately
+        const optimisticTask = {
+            id: Date.now().toString(),
+            text: text,
+            completed: false,
+            category: categorySelect.value,
+            createdAt: new Date().toISOString(),
+            lastModified: Date.now(),
+            sortOrder: this.tasks.length,
+            favorite: false,
+            links: []
+        };
+
+        // Optimistic update - add task immediately
+        this.tasks.push(optimisticTask);
+        this.renderTasks();
+        this.renderCategories();
+        taskInput.value = '';
+
         try {
             const response = await fetch('/api/tasks', {
                 method: 'POST',
@@ -179,15 +209,36 @@ class TakenlijstApp {
 
             if (response.ok) {
                 const newTask = await response.json();
-                this.tasks.push(newTask); // Optimistic update
-                this.renderTasks();
-                this.renderCategories(); // Update count
-                taskInput.value = '';
+                // Replace optimistic task with server task
+                const index = this.tasks.findIndex(t => t.id === optimisticTask.id);
+                if (index !== -1) {
+                    this.tasks[index] = newTask;
+                    this.renderTasks();
+                    this.renderCategories();
+                }
                 this.showMessage('Taak toegevoegd!', 'success');
+            } else {
+                // Revert optimistic update on server error
+                const index = this.tasks.findIndex(t => t.id === optimisticTask.id);
+                if (index !== -1) {
+                    this.tasks.splice(index, 1);
+                    this.renderTasks();
+                    this.renderCategories();
+                }
+                const errorText = await response.text();
+                console.error('Server error adding task:', errorText);
+                this.showMessage('Server fout bij toevoegen taak', 'error');
             }
         } catch (error) {
-            console.error('Error adding task:', error);
-            this.showMessage('Fout bij toevoegen taak', 'error');
+            // Revert optimistic update on network error
+            const index = this.tasks.findIndex(t => t.id === optimisticTask.id);
+            if (index !== -1) {
+                this.tasks.splice(index, 1);
+                this.renderTasks();
+                this.renderCategories();
+            }
+            console.error('Network error adding task:', error);
+            this.showMessage('Verbindingsfout bij toevoegen taak', 'error');
         }
     }
 
@@ -199,20 +250,32 @@ class TakenlijstApp {
         const task = this.tasks.find(t => t.id === taskId);
         if (!task) return;
 
+        // Optimistic update - do it BEFORE server call for instant feedback
+        const originalState = task.completed;
+        task.completed = !task.completed;
+        this.renderTasks();
+        this.renderCategories();
+
         try {
             const response = await fetch(`/api/tasks/${taskId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ completed: !task.completed })
+                body: JSON.stringify({ completed: task.completed })
             });
 
-            if (response.ok) {
-                // Optimistic update - update local state immediately
-                task.completed = !task.completed;
+            if (!response.ok) {
+                // Revert on server error
+                task.completed = originalState;
                 this.renderTasks();
-                this.renderCategories(); // Update count
+                this.renderCategories();
+                this.showMessage('Fout bij wijzigen taak', 'error');
             }
         } catch (error) {
+            // Revert on network error
+            task.completed = originalState;
+            this.renderTasks();
+            this.renderCategories();
+            this.showMessage('Verbindingsfout', 'error');
             console.error('Error toggling task:', error);
         }
     }
@@ -830,13 +893,13 @@ class TakenlijstApp {
                 // Don't reload data - drag already moved visually
                 this.showMessage('Taak verplaatst', 'success');
             } else {
-                // Revert on error
-                await this.loadData();
+                // Only show error, don't reload data to preserve other optimistic updates
                 this.showMessage('Fout bij verplaatsen', 'error');
             }
         } catch (error) {
             console.error('Error moving task:', error);
-            await this.loadData();
+            // Only show error, don't reload data to preserve other optimistic updates
+            this.showMessage('Verbindingsfout bij verplaatsen', 'error');
         }
     }
 
