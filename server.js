@@ -11,6 +11,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, 'data', 'tasks.json');
 
+// In-memory storage for production (Render doesn't persist files)
+let memoryTasks = null;
+
 app.use(compression()); // Enable gzip compression
 app.use(express.json());
 
@@ -45,8 +48,13 @@ async function ensureDataDir() {
   }
 }
 
-// Load tasks from JSON file
+// Load tasks from JSON file or memory
 async function loadTasks() {
+  // Return from memory in production if available
+  if (process.env.NODE_ENV === 'production' && memoryTasks) {
+    return memoryTasks;
+  }
+  
   try {
     const data = await fs.readFile(DATA_FILE, 'utf8');
     const parsed = JSON.parse(data);
@@ -97,16 +105,29 @@ async function loadTasks() {
     
     return parsed;
   } catch (error) {
-    return { categories: { 'algemeen': { name: 'Algemeen', color: '#3498db', tasks: [] } }, tasks: [] };
+    const defaultData = { categories: { 'algemeen': { name: 'Algemeen', color: '#3498db', tasks: [] } }, tasks: [] };
+    // Store default data in memory for production
+    if (process.env.NODE_ENV === 'production') {
+      memoryTasks = defaultData;
+    }
+    return defaultData;
   }
 }
 
 // Save tasks to JSON file
 async function saveTasks(data) {
   try {
+    // Store in memory for production (files don't persist on Render)
+    if (process.env.NODE_ENV === 'production') {
+      memoryTasks = data;
+      console.log('Tasks saved to memory (production mode)');
+      return;
+    }
     await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2));
   } catch (error) {
     console.error('Error saving tasks:', error);
+    // Fallback to memory if file write fails
+    memoryTasks = data;
   }
 }
 

@@ -41,7 +41,8 @@
       "Bash(git config:*)",
       "Bash(git remote add:*)",
       "Bash(git push:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "WebFetch(domain:taken-qzz6.onrender.com)"
     ],
     "deny": []
   }
