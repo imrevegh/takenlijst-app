@@ -1083,27 +1083,29 @@ class TakenlijstApp {
             // Show message
             this.showMessage('Je wordt uitgelogd...', 'info');
             
-            // Clear auth by going to a bad credentials URL
-            // This will trigger a 401 and clear the browser's auth cache
+            // Clear auth and redirect to Google for privacy
             setTimeout(() => {
                 // Try multiple methods to clear auth
-                const currentUrl = window.location.href;
                 const baseUrl = window.location.protocol + '//' + window.location.host;
                 
-                // Method 1: Try invalid credentials
-                window.location.href = baseUrl.replace('://', '://invalid:invalid@') + '/';
+                // Method 1: Try invalid credentials to clear auth
+                const tempFrame = document.createElement('iframe');
+                tempFrame.style.display = 'none';
+                tempFrame.src = baseUrl.replace('://', '://invalid:invalid@') + '/';
+                document.body.appendChild(tempFrame);
                 
-                // Fallback: if that doesn't work, just reload after clearing cache
+                // After clearing auth, redirect to Google
                 setTimeout(() => {
-                    // Force hard reload
-                    window.location.reload(true);
-                }, 2000);
+                    document.body.removeChild(tempFrame);
+                    window.location.href = 'https://www.google.com';
+                }, 1000);
+                
             }, 1000);
             
         } catch (error) {
             console.error('Logout error:', error);
-            // Fallback: just reload the page
-            window.location.reload(true);
+            // Fallback: redirect to Google anyway
+            window.location.href = 'https://www.google.com';
         }
     }
 }
