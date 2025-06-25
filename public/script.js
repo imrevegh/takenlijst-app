@@ -14,6 +14,7 @@ class TakenlijstApp {
         this.selectedTasks = new Set();
         this.sortableInstance = null;
         this.draggedTask = null;
+        this.searchTimeout = null;
         
         this.init();
     }
@@ -176,7 +177,10 @@ class TakenlijstApp {
             });
 
             if (response.ok) {
-                await this.loadData();
+                const newTask = await response.json();
+                this.tasks.push(newTask); // Optimistic update
+                this.renderTasks();
+                this.renderCategories(); // Update count
                 taskInput.value = '';
                 this.showMessage('Taak toegevoegd!', 'success');
             }
@@ -202,7 +206,10 @@ class TakenlijstApp {
             });
 
             if (response.ok) {
-                await this.loadData();
+                // Optimistic update - update local state immediately
+                task.completed = !task.completed;
+                this.renderTasks();
+                this.renderCategories(); // Update count
             }
         } catch (error) {
             console.error('Error toggling task:', error);
@@ -220,7 +227,10 @@ class TakenlijstApp {
         try {
             const response = await fetch(`/api/tasks/${taskId}`, { method: 'DELETE' });
             if (response.ok) {
-                await this.loadData();
+                // Optimistic update - remove from local state immediately
+                this.tasks = this.tasks.filter(t => t.id !== taskId);
+                this.renderTasks();
+                this.renderCategories(); // Update count
                 this.showMessage('Taak verwijderd', 'success');
             }
         } catch (error) {
@@ -407,12 +417,20 @@ class TakenlijstApp {
 
 
     /**
-     * Filter tasks by search term
+     * Filter tasks by search term (debounced for performance)
      * @param {string} searchTerm - Search term
      */
     filterTasks(searchTerm) {
-        this.searchTerm = searchTerm.toLowerCase();
-        this.renderTasks();
+        // Clear previous timeout
+        if (this.searchTimeout) {
+            clearTimeout(this.searchTimeout);
+        }
+        
+        // Debounce search for better performance
+        this.searchTimeout = setTimeout(() => {
+            this.searchTerm = searchTerm.toLowerCase();
+            this.renderTasks();
+        }, 150); // Wait 150ms after user stops typing
     }
 
     /**
@@ -794,9 +812,12 @@ class TakenlijstApp {
             });
             
             if (response.ok) {
-                await this.loadData();
+                // Don't reload data - drag already moved visually
+                this.showMessage('Taak verplaatst', 'success');
             } else {
+                // Revert on error
                 await this.loadData();
+                this.showMessage('Fout bij verplaatsen', 'error');
             }
         } catch (error) {
             console.error('Error moving task:', error);
@@ -886,7 +907,22 @@ class TakenlijstApp {
             }
         }
         
-        this.renderTasks();
+        // Only update selection visual state, not full re-render
+        this.updateTaskSelectionVisuals();
+    }
+    
+    /**
+     * Update task selection visuals without full re-render
+     */
+    updateTaskSelectionVisuals() {
+        document.querySelectorAll('.task-item').forEach(element => {
+            const taskId = element.dataset.taskId;
+            if (this.selectedTasks.has(taskId)) {
+                element.classList.add('selected');
+            } else {
+                element.classList.remove('selected');
+            }
+        });
     }
 
     /**
