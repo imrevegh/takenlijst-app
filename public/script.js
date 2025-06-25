@@ -1079,8 +1079,17 @@ class TakenlijstApp {
             
             // Reload data from server
             await this.loadData();
-            this.renderTasks();
+            
+            // Force re-render everything to ensure fresh data
             this.renderCategories();
+            this.renderTasks();
+            
+            // Restore active category if it still exists
+            if (this.activeCategory && this.categories[this.activeCategory]) {
+                this.setActiveCategory(this.activeCategory);
+            } else {
+                this.setActiveCategory('algemeen');
+            }
             
             // Show success message
             this.showMessage('Data gesynchroniseerd!', 'success');
