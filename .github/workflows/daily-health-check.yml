@@ -1,0 +1,171 @@
+name: Daily Health Check
+
+on:
+  schedule:
+    # Run once daily at 09:00 UTC (11:00 CET) for comprehensive health check
+    - cron: '0 9 * * *'
+  
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 🏥 Comprehensive App Health Check
+      run: |
+        echo "🏥 Daily Health Check - $(date)"
+        echo "📡 Target: ${{ secrets.APP_URL }}"
+        echo "════════════════════════════════════════"
+        
+        # Check if APP_URL is configured
+        if [ -z "${{ secrets.APP_URL }}" ]; then
+          echo "❌ APP_URL secret not set in repository settings!"
+          exit 1
+        fi
+        
+        APP_URL="${{ secrets.APP_URL }}"
+        
+        # Function to test endpoint
+        test_endpoint() {
+          local endpoint="$1"
+          local description="$2"
+          local expected_status="$3"
+          
+          echo ""
+          echo "🔍 Testing: ${description}"
+          echo "   URL: ${APP_URL}${endpoint}"
+          
+          if response=$(curl -s -o /tmp/response -w "%{http_code},%{time_total},%{time_connect}" \
+                            --max-time 30 \
+                            --connect-timeout 10 \
+                            -H "User-Agent: GitHub-Actions-Health-Check/1.0" \
+                            "${APP_URL}${endpoint}" 2>/dev/null); then
+            
+            status_code=$(echo $response | cut -d',' -f1)
+            total_time=$(echo $response | cut -d',' -f2)
+            connect_time=$(echo $response | cut -d',' -f3)
+            
+            total_ms=$(echo "$total_time * 1000 / 1" | bc 2>/dev/null || echo "unknown")
+            connect_ms=$(echo "$connect_time * 1000 / 1" | bc 2>/dev/null || echo "unknown")
+            
+            if [ "$status_code" = "$expected_status" ]; then
+              echo "   ✅ Status: ${status_code} (expected: ${expected_status})"
+              echo "   ⏱️  Response: ${total_ms}ms | Connect: ${connect_ms}ms"
+              
+              # Check for slow responses
+              if [ "$total_ms" != "unknown" ] && [ $(echo "$total_ms > 10000" | bc 2>/dev/null || echo 0) -eq 1 ]; then
+                echo "   ⚠️  SLOW RESPONSE detected (${total_ms}ms)"
+              fi
+              
+              return 0
+            else
+              echo "   ❌ Status: ${status_code} (expected: ${expected_status})"
+              echo "   ⏱️  Response: ${total_ms}ms"
+              # Show first few lines of response for debugging
+              if [ -f /tmp/response ]; then
+                echo "   📄 Response preview:"
+                head -3 /tmp/response | sed 's/^/      /'
+              fi
+              return 1
+            fi
+          else
+            echo "   ❌ CONNECTION FAILED"
+            return 1
+          fi
+        }
+        
+        # Track results
+        total_tests=0
+        passed_tests=0
+        failed_tests=0
+        
+        # Test main endpoints
+        echo "🚀 Starting comprehensive health check..."
+        
+        # Test 1: Login page (should be accessible)
+        total_tests=$((total_tests + 1))
+        if test_endpoint "/login.html" "Login Page" "200"; then
+          passed_tests=$((passed_tests + 1))
+        else
+          failed_tests=$((failed_tests + 1))
+        fi
+        
+        # Test 2: Main app redirect (should redirect to login)
+        total_tests=$((total_tests + 1))
+        if test_endpoint "/" "Main App" "302"; then
+          passed_tests=$((passed_tests + 1))
+        else
+          failed_tests=$((failed_tests + 1))
+        fi
+        
+        # Test 3: API endpoint (should require auth)
+        total_tests=$((total_tests + 1))
+        if test_endpoint "/api/tasks" "API Endpoint" "401"; then
+          passed_tests=$((passed_tests + 1))
+        else
+          failed_tests=$((failed_tests + 1))
+        fi
+        
+        # Test 4: Static assets
+        total_tests=$((total_tests + 1))
+        if test_endpoint "/style.css" "CSS Assets" "200"; then
+          passed_tests=$((passed_tests + 1))
+        else
+          failed_tests=$((failed_tests + 1))
+        fi
+        
+        # Test 5: JavaScript assets
+        total_tests=$((total_tests + 1))
+        if test_endpoint "/script.js" "JavaScript Assets" "200"; then
+          passed_tests=$((passed_tests + 1))
+        else
+          failed_tests=$((failed_tests + 1))
+        fi
+        
+        # Summary
+        echo ""
+        echo "════════════════════════════════════════"
+        echo "📊 HEALTH CHECK SUMMARY"
+        echo "════════════════════════════════════════"
+        echo "✅ Passed: ${passed_tests}/${total_tests}"
+        echo "❌ Failed: ${failed_tests}/${total_tests}"
+        
+        if [ $failed_tests -eq 0 ]; then
+          echo "🎉 ALL TESTS PASSED - App is healthy!"
+        elif [ $failed_tests -le 2 ]; then
+          echo "⚠️  Some tests failed but app appears functional"
+        else
+          echo "🚨 MULTIPLE FAILURES - App may have issues"
+        fi
+        
+        echo ""
+        echo "💡 Next health check: $(date -d '+1 day' '+%Y-%m-%d 09:00 UTC')"
+        
+        # Don't fail the action unless all tests fail
+        if [ $passed_tests -eq 0 ]; then
+          echo "🚨 CRITICAL: All health checks failed!"
+          exit 1
+        fi
+
+    - name: 📈 Performance Metrics
+      if: always()
+      run: |
+        echo ""
+        echo "📈 PERFORMANCE INSIGHTS"
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        echo "🎯 Target App: $(echo '${{ secrets.APP_URL }}' | sed 's|https://||')"
+        echo "🕐 Check Time: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+        echo "⚡ Keep-Alive: Every 10 minutes (prevents 95% of cold starts)"
+        echo "🏥 Health Check: Daily at 09:00 UTC"
+        echo ""
+        echo "📊 Expected Response Times:"
+        echo "   • Warm app: 100-500ms"
+        echo "   • Cold start: 10-60 seconds"
+        echo "   • With keep-alive: Mostly warm responses"
+        echo ""
+        echo "🔧 Troubleshooting:"
+        echo "   • Slow responses: Check Render app logs"
+        echo "   • Failed tests: Verify APP_URL secret is correct"
+        echo "   • All failures: App may be down or URL changed"

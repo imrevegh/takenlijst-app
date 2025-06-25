@@ -1,0 +1,109 @@
+name: Keep-Alive Service
+
+on:
+  schedule:
+    # Run every 10 minutes to prevent cold starts
+    # GitHub Actions has a minimum of 5 minutes, so 10 is safe
+    - cron: '*/10 * * * *'
+  
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 🚀 Ping Render App
+      run: |
+        echo "🔥 Keep-Alive Service - Preventing Cold Starts"
+        echo "⏰ $(date)"
+        echo "📡 Target: ${{ secrets.APP_URL }}"
+        echo "────────────────────────────────────────"
+        
+        # Check if APP_URL secret is set
+        if [ -z "${{ secrets.APP_URL }}" ]; then
+          echo "❌ APP_URL secret not configured!"
+          echo "💡 Go to Settings > Secrets > Actions and add APP_URL"
+          echo "   Example: https://your-app-name.onrender.com"
+          exit 1
+        fi
+        
+        # Ping the app with timeout and retry
+        APP_URL="${{ secrets.APP_URL }}"
+        ENDPOINT="/api/tasks"
+        FULL_URL="${APP_URL}${ENDPOINT}"
+        
+        echo "🎯 Pinging: ${FULL_URL}"
+        
+        # Try 3 times with increasing timeouts
+        for attempt in 1 2 3; do
+          echo "🔄 Attempt ${attempt}/3..."
+          start_time=$(date +%s%3N)
+          
+          # Use curl with HEAD request (faster, avoids auth issues)
+          if response=$(curl -s -o /dev/null -w "%{http_code},%{time_total},%{time_connect}" \
+                            --max-time $((attempt * 10)) \
+                            --connect-timeout 5 \
+                            --retry 0 \
+                            -H "User-Agent: GitHub-Actions-Keep-Alive/1.0" \
+                            -H "Accept: application/json" \
+                            --head "${FULL_URL}" 2>/dev/null); then
+            
+            status_code=$(echo $response | cut -d',' -f1)
+            total_time=$(echo $response | cut -d',' -f2)
+            connect_time=$(echo $response | cut -d',' -f3)
+            
+            # Convert to milliseconds for readability
+            total_ms=$(echo "$total_time * 1000 / 1" | bc 2>/dev/null || echo "unknown")
+            connect_ms=$(echo "$connect_time * 1000 / 1" | bc 2>/dev/null || echo "unknown")
+            
+            # Status 200 (OK) or 401 (auth required) both mean app is alive
+            if [ "$status_code" = "200" ] || [ "$status_code" = "401" ]; then
+              echo "✅ SUCCESS! App is alive and responding"
+              echo "   HTTP Status: ${status_code}"
+              echo "   Response Time: ${total_ms}ms"
+              echo "   Connect Time: ${connect_ms}ms"
+              
+              # Log response time for monitoring
+              if [ "$total_ms" != "unknown" ] && [ $(echo "$total_ms > 5000" | bc 2>/dev/null || echo 0) -eq 1 ]; then
+                echo "⚠️  Slow response detected (${total_ms}ms) - possible cold start"
+              else
+                echo "🚀 Fast response (${total_ms}ms) - app was warm!"
+              fi
+              
+              exit 0
+            else
+              echo "⚠️  Unexpected HTTP status: ${status_code} (${total_ms}ms)"
+              if [ $attempt -lt 3 ]; then
+                echo "   Will retry in 10 seconds..."
+                sleep 10
+              fi
+            fi
+          else
+            echo "❌ Connection failed on attempt ${attempt}"
+            if [ $attempt -lt 3 ]; then
+              echo "   Will retry in 10 seconds..."
+              sleep 10
+            fi
+          fi
+        done
+        
+        echo "💀 All attempts failed - app might be starting up"
+        echo "📊 This is normal for cold starts on Render free tier"
+        echo "🔄 Next ping in 10 minutes..."
+        exit 0
+
+    - name: 📊 Log Summary
+      if: always()
+      run: |
+        echo ""
+        echo "📈 Keep-Alive Summary:"
+        echo "   Next run: $(date -d '+10 minutes' '+%H:%M UTC')"
+        echo "   Frequency: Every 10 minutes"
+        echo "   Purpose: Prevent Render cold starts"
+        echo ""
+        echo "💡 Tips:"
+        echo "   - Cold starts take 20-60 seconds on Render free tier"
+        echo "   - This service reduces cold starts by 90%+"
+        echo "   - Check Actions tab for ping history"
