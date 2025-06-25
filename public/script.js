@@ -688,10 +688,7 @@ class TakenlijstApp {
             if (a.category !== b.category) {
                 return a.category.localeCompare(b.category);
             }
-            // Favorites first within same category
-            if (a.favorite !== b.favorite) {
-                return a.favorite ? -1 : 1;
-            }
+            // Sort by sortOrder only - favorites get boosted via server-side sortOrder manipulation
             const aOrder = a.sortOrder || 0;
             const bOrder = b.sortOrder || 0;
             return aOrder - bOrder;
