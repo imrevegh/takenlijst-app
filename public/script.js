@@ -75,7 +75,7 @@ class TakenlijstApp {
 
         // Controls
         this.getElementById('mobile-menu-toggle').addEventListener('click', () => this.toggleMobileMenu());
-        this.getElementById('mobile-overlay').addEventListener('click', () => this.closeMobileMenu());
+        this.getElementById('sidebar-overlay').addEventListener('click', () => this.closeMobileMenu());
         this.getElementById('logout-btn').addEventListener('click', () => this.logout());
         this.getElementById('toggle-completed').addEventListener('click', () => this.toggleCompleted());
         this.getElementById('dark-mode-toggle').addEventListener('click', () => this.toggleDarkMode());
@@ -1160,13 +1160,15 @@ class TakenlijstApp {
      */
     toggleMobileMenu() {
         const sidebar = document.querySelector('.sidebar');
-        const overlay = this.getElementById('mobile-overlay');
+        const overlay = this.getElementById('sidebar-overlay');
+        const menuToggle = this.getElementById('mobile-menu-toggle');
         
-        sidebar.classList.toggle('mobile-open');
+        sidebar.classList.toggle('open');
         overlay.classList.toggle('active');
+        menuToggle.classList.toggle('active');
         
         // Prevent body scroll when menu is open
-        document.body.style.overflow = sidebar.classList.contains('mobile-open') ? 'hidden' : '';
+        document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
     }
     
     /**
@@ -1174,10 +1176,12 @@ class TakenlijstApp {
      */
     closeMobileMenu() {
         const sidebar = document.querySelector('.sidebar');
-        const overlay = this.getElementById('mobile-overlay');
+        const overlay = this.getElementById('sidebar-overlay');
+        const menuToggle = this.getElementById('mobile-menu-toggle');
         
-        sidebar.classList.remove('mobile-open');
+        sidebar.classList.remove('open');
         overlay.classList.remove('active');
+        menuToggle.classList.remove('active');
         document.body.style.overflow = '';
     }
 
