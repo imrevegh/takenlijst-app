@@ -1117,21 +1117,27 @@ class TakenlijstApp {
                 credentials: 'same-origin'
             });
             
-            // 4) Clear history and redirect to login page
+            // 4) Clear browser history and redirect
             setTimeout(() => {
-                // Clear as much history as possible and force reload of login
-                if (window.history && window.history.replaceState) {
-                    window.history.replaceState(null, '', '/login.html');
-                    // Clear browser storage to prevent autofill
-                    try {
-                        sessionStorage.clear();
-                        localStorage.removeItem('recentCredentials');
-                    } catch (e) {}
+                try {
+                    // Clear browser storage
+                    sessionStorage.clear();
+                    localStorage.clear();
                     
-                    // Force reload of login page to clear any cached form data
-                    window.location.href = '/login.html?t=' + Date.now();
-                } else {
-                    window.location.replace('/login.html?t=' + Date.now());
+                    // Clear all possible history entries by going back to start
+                    let historyLength = window.history.length;
+                    if (historyLength > 1) {
+                        // Replace all history with clean login page
+                        window.history.go(-(historyLength - 1));
+                        setTimeout(() => {
+                            window.location.replace('/login.html?cleared=' + Date.now());
+                        }, 100);
+                    } else {
+                        window.location.replace('/login.html?cleared=' + Date.now());
+                    }
+                } catch (e) {
+                    // Fallback
+                    window.location.replace('/login.html?cleared=' + Date.now());
                 }
             }, 1000);
             

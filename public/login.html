@@ -189,8 +189,12 @@
                 const result = await response.json();
                 
                 if (response.ok) {
-                    // Successful login - redirect to main app
-                    window.location.href = '/';
+                    // Clear form before redirect to prevent history caching
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                    
+                    // Use replace to prevent going back to filled form
+                    window.location.replace('/');
                 } else {
                     // Show error
                     errorDiv.textContent = result.error || 'Inloggen mislukt';
