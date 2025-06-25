@@ -693,6 +693,10 @@ class TakenlijstApp {
             if (a.category !== b.category) {
                 return a.category.localeCompare(b.category);
             }
+            // Favorites first within same category
+            if (a.favorite !== b.favorite) {
+                return a.favorite ? -1 : 1;
+            }
             const aOrder = a.sortOrder || 0;
             const bOrder = b.sortOrder || 0;
             return aOrder - bOrder;
@@ -959,6 +963,7 @@ class TakenlijstApp {
                     // Optimistic update - task category already changed by drag
                     this.draggedTask.category = targetCategoryId;
                     this.renderCategories(); // Update counts
+                    this.renderTasks(); // Update task display
                     this.showMessage('Taak verplaatst naar categorie', 'success');
                 }
             } catch (error) {
