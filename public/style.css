@@ -240,6 +240,11 @@ header h1 {
     padding: 0 8px;
 }
 
+/* Hide mobile logout on desktop */
+.mobile-sidebar-footer {
+    display: none;
+}
+
 .category-form {
     display: flex;
     gap: 8px;
@@ -913,12 +918,41 @@ select:focus, input[type="text"]:focus {
     }
     
     .header-controls {
-        gap: 8px;
+        gap: 4px; /* Smaller gap for mobile */
     }
     
     .header-controls .btn-secondary {
-        padding: 6px 8px;
-        font-size: 0.9rem;
+        padding: 4px 6px;
+        font-size: 0.8rem;
+        min-width: auto;
+    }
+    
+    /* Hide some buttons on very small screens */
+    @media (max-width: 480px) {
+        .header-controls #logout-btn {
+            display: none; /* Hide logout on very small screens - use sidebar instead */
+        }
+    }
+    
+    /* Make import/export more compact */
+    .header-controls #export-btn,
+    .header-controls #import-btn {
+        padding: 4px;
+        font-size: 1rem; /* Keep emoji size but reduce padding */
+    }
+    
+    /* Mobile sidebar footer */
+    .mobile-sidebar-footer {
+        display: block;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+    }
+    
+    #mobile-logout-btn {
+        width: 100%;
+        text-align: center;
     }
     
     /* Mobile Sidebar */

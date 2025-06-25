@@ -77,6 +77,7 @@ class TakenlijstApp {
         this.getElementById('mobile-menu-toggle').addEventListener('click', () => this.toggleMobileMenu());
         this.getElementById('mobile-overlay').addEventListener('click', () => this.closeMobileMenu());
         this.getElementById('logout-btn').addEventListener('click', () => this.logout());
+        this.getElementById('mobile-logout-btn').addEventListener('click', () => this.logout());
         this.getElementById('toggle-completed').addEventListener('click', () => this.toggleCompleted());
         this.getElementById('search-input').addEventListener('input', (e) => this.filterTasks(e.target.value));
         
