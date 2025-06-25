@@ -654,11 +654,6 @@ class TakenlijstApp {
                 }
             }, 10);
         });
-        
-        // Mouse events for drag & drop
-        categoryElement.addEventListener('mouseenter', this.handleCategoryMouseEnter);
-        categoryElement.addEventListener('mouseleave', this.handleCategoryMouseLeave);
-        categoryElement.addEventListener('mouseup', this.handleCategoryMouseUp);
     }
 
     /**
@@ -836,13 +831,35 @@ class TakenlijstApp {
                 this.setupCategoryDropTargets();
             },
             
+            onMove: (evt, originalEvent) => {
+                // Check if we're hovering over a category
+                const categoryElement = originalEvent.target.closest('.category-item');
+                if (categoryElement && this.draggedTask) {
+                    // Highlight category as drop target
+                    document.querySelectorAll('.category-item').forEach(el => 
+                        el.classList.remove('category-drop-target'));
+                    categoryElement.classList.add('category-drop-target');
+                    return false; // Prevent normal sorting behavior over categories
+                }
+                return true; // Allow normal sorting within task list
+            },
+            
             onEnd: async (evt) => {
+                // Check if we dropped on a category
+                const dropTarget = document.elementFromPoint(evt.originalEvent.clientX, evt.originalEvent.clientY);
+                const categoryElement = dropTarget ? dropTarget.closest('.category-item') : null;
+                
                 this.removeCategoryDropTargets();
+                
+                if (categoryElement && this.draggedTask) {
+                    // Handle category drop
+                    await this.handleCategoryDrop(categoryElement);
+                } else if (evt.oldIndex !== evt.newIndex) {
+                    // Handle normal task reordering
+                    await this.handleSortableMove(evt);
+                }
+                
                 this.draggedTask = null;
-                
-                if (evt.oldIndex === evt.newIndex) return;
-                
-                await this.handleSortableMove(evt);
             }
         });
     }
@@ -908,50 +925,16 @@ class TakenlijstApp {
     }
 
     /**
-     * Setup category drop targets for drag and drop
+     * Handle dropping a task on a category
+     * @param {HTMLElement} categoryElement - Category element that was dropped on
      */
-    setupCategoryDropTargets() {
-        const categories = document.querySelectorAll('.category-item');
-        categories.forEach(categoryEl => {
-            categoryEl.addEventListener('mouseenter', this.handleCategoryMouseEnter);
-            categoryEl.addEventListener('mouseleave', this.handleCategoryMouseLeave);
-            categoryEl.addEventListener('mouseup', this.handleCategoryMouseUp);
-        });
-    }
-
-    /**
-     * Remove category drop targets
-     */
-    removeCategoryDropTargets() {
-        const categories = document.querySelectorAll('.category-item');
-        categories.forEach(categoryEl => {
-            categoryEl.removeEventListener('mouseenter', this.handleCategoryMouseEnter);
-            categoryEl.removeEventListener('mouseleave', this.handleCategoryMouseLeave);
-            categoryEl.removeEventListener('mouseup', this.handleCategoryMouseUp);
-            categoryEl.classList.remove('category-drop-target');
-        });
-    }
-
-    handleCategoryMouseEnter = (e) => {
-        if (this.draggedTask) {
-            e.currentTarget.classList.add('category-drop-target');
-        }
-    }
-
-    handleCategoryMouseLeave = (e) => {
-        e.currentTarget.classList.remove('category-drop-target');
-    }
-
-    handleCategoryMouseUp = async (e) => {
+    async handleCategoryDrop(categoryElement) {
         if (!this.draggedTask) return;
-        
-        const categoryElement = e.currentTarget;
-        categoryElement.classList.remove('category-drop-target');
         
         const categoryNameElement = categoryElement.querySelector('.category-name');
         const targetCategoryId = categoryNameElement.getAttribute('data-category-id');
         
-        if (this.draggedTask && this.draggedTask.category !== targetCategoryId) {
+        if (this.draggedTask.category !== targetCategoryId) {
             try {
                 const response = await fetch(`/api/tasks/${this.draggedTask.id}`, {
                     method: 'PUT',
@@ -968,8 +951,26 @@ class TakenlijstApp {
                 }
             } catch (error) {
                 console.error('Error moving task to category:', error);
+                this.showMessage('Fout bij verplaatsen naar categorie', 'error');
             }
         }
+    }
+
+    /**
+     * Setup category drop targets for drag and drop
+     */
+    setupCategoryDropTargets() {
+        // No longer needed - handled by SortableJS onMove callback
+    }
+
+    /**
+     * Remove category drop targets
+     */
+    removeCategoryDropTargets() {
+        const categories = document.querySelectorAll('.category-item');
+        categories.forEach(categoryEl => {
+            categoryEl.classList.remove('category-drop-target');
+        });
     }
 
     /**
