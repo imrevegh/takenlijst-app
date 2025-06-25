@@ -1068,27 +1068,42 @@ class TakenlijstApp {
     /**
      * Logout function - clears browser auth cache
      */
-    async logout() {
+    logout() {
         const logoutBtn = this.getElementById('logout-btn');
+        
+        // Confirm logout
+        if (!confirm('Weet je zeker dat je wilt uitloggen?')) {
+            return;
+        }
         
         try {
             logoutBtn.textContent = '🚪 Uitloggen...';
             logoutBtn.disabled = true;
             
-            // Show confirmation message
+            // Show message
             this.showMessage('Je wordt uitgelogd...', 'info');
             
-            // Method 1: Try to trigger browser logout by accessing a logout URL
-            // This forces the browser to forget the basic auth credentials
+            // Clear auth by going to a bad credentials URL
+            // This will trigger a 401 and clear the browser's auth cache
             setTimeout(() => {
-                window.location.href = 'https://logout:logout@' + window.location.host + window.location.pathname;
+                // Try multiple methods to clear auth
+                const currentUrl = window.location.href;
+                const baseUrl = window.location.protocol + '//' + window.location.host;
+                
+                // Method 1: Try invalid credentials
+                window.location.href = baseUrl.replace('://', '://invalid:invalid@') + '/';
+                
+                // Fallback: if that doesn't work, just reload after clearing cache
+                setTimeout(() => {
+                    // Force hard reload
+                    window.location.reload(true);
+                }, 2000);
             }, 1000);
             
         } catch (error) {
-            console.error('Logout failed:', error);
-            this.showMessage('Uitloggen mislukt', 'error');
-            logoutBtn.textContent = '🚪 Uitloggen';
-            logoutBtn.disabled = false;
+            console.error('Logout error:', error);
+            // Fallback: just reload the page
+            window.location.reload(true);
         }
     }
 }
