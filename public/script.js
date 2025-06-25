@@ -1069,35 +1069,35 @@ class TakenlijstApp {
      * Logout function - clears browser auth cache
      */
     logout() {
-        // Clear all client-side data first
+        // 1) Clear all client-side data first
         this.clearAllData();
         
-        // Clear page content immediately for security
+        // 2) Make screen white/empty immediately for security
         document.body.innerHTML = `
             <div style="
                 position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
-                background: #f5f5f5; display: flex; align-items: center; justify-content: center;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            ">
-                <div style="text-align: center; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                    <h2 style="margin: 0 0 20px 0; color: #333;">🚪 Uitgelogd</h2>
-                    <p style="margin: 0; color: #666;">Je wordt doorgestuurd naar Google...</p>
-                </div>
-            </div>
+                background: white; 
+                z-index: 9999;
+            "></div>
         `;
         
-        // Firefox-specific auth clearing method
+        // 3) Clear auth and show login screen
         setTimeout(() => {
-            if (navigator.userAgent.toLowerCase().includes('firefox')) {
-                // For Firefox: try auth clearing + redirect
-                window.location.replace('https://logout:logout@' + window.location.host);
-                setTimeout(() => {
-                    window.location.replace('https://www.google.com');
-                }, 200);
-            } else {
-                // For other browsers: direct redirect
-                window.location.replace('https://www.google.com');
-            }
+            // Try to clear auth by making request with invalid credentials
+            fetch(window.location.origin, {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Basic ' + btoa('invalid:invalid')
+                }
+            }).catch(() => {
+                // Auth cleared, reload page to show login
+                window.location.reload();
+            });
+            
+            // Fallback: reload anyway after short delay
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
         }, 500);
     }
 
