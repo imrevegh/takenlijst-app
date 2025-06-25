@@ -1069,31 +1069,13 @@ class TakenlijstApp {
      * Logout function - clears browser auth cache
      */
     logout() {
-        const logoutBtn = this.getElementById('logout-btn');
-        
         // Confirm logout
         if (!confirm('Weet je zeker dat je wilt uitloggen?')) {
             return;
         }
         
-        try {
-            logoutBtn.textContent = '🚪 Uitloggen...';
-            logoutBtn.disabled = true;
-            
-            // Show message
-            this.showMessage('Je wordt uitgelogd...', 'info');
-            
-            // Clear auth and redirect to Google immediately
-            setTimeout(() => {
-                // Direct redirect to Google with auth clearing attempt
-                window.location.href = 'https://www.google.com';
-            }, 500);
-            
-        } catch (error) {
-            console.error('Logout error:', error);
-            // Fallback: redirect to Google anyway
-            window.location.href = 'https://www.google.com';
-        }
+        // Immediate redirect to Google - no delays
+        window.location.href = 'https://www.google.com';
     }
 }
 
