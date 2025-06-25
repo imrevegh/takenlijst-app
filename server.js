@@ -164,24 +164,38 @@ async function loadTasks() {
 
 // Save tasks to JSON file
 async function saveTasks(data) {
+  console.log('🔥 EMERGENCY SAVE ATTEMPT - Starting...');
+  
   try {
     // Clear cache when saving new data
     tasksCache = null;
     cacheTimestamp = 0;
     
-    // Always save to file in development, and also save to memory for Render production
-    console.log('Saving tasks to file...');
-    await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2));
-    console.log('Tasks saved successfully to file');
+    // FORCE file write with immediate flush
+    const jsonData = JSON.stringify(data, null, 2);
+    console.log('🔥 Writing data length:', jsonData.length);
     
-    // Also store in memory for production (files don't persist on Render)
-    if (process.env.NODE_ENV === 'production') {
-      memoryTasks = data;
-    }
+    await fs.writeFile(DATA_FILE, jsonData, { encoding: 'utf8', flag: 'w' });
+    
+    // Force flush to disk
+    const fd = await fs.open(DATA_FILE, 'r+');
+    await fd.sync();
+    await fd.close();
+    
+    console.log('🔥 EMERGENCY SAVE SUCCESS - File written and synced');
+    
+    // Also store in memory as backup
+    memoryTasks = data;
+    
+    // Verify file was actually written
+    const stats = await fs.stat(DATA_FILE);
+    console.log('🔥 File verification - Size:', stats.size, 'Modified:', stats.mtime);
+    
   } catch (error) {
-    console.error('Error saving tasks:', error);
+    console.error('🔥 EMERGENCY SAVE FAILED:', error);
     // Fallback to memory if file write fails
     memoryTasks = data;
+    throw error; // Propagate error so caller knows it failed
   }
 }
 
