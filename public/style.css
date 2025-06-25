@@ -668,6 +668,14 @@ header h1 {
     color: var(--text-primary);
 }
 
+.btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
 .btn-danger {
     background: transparent;
     border: none;

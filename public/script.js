@@ -51,6 +51,7 @@ class TakenlijstApp {
         });
 
         // Controls
+        this.getElementById('sync-btn').addEventListener('click', () => this.syncData());
         this.getElementById('toggle-completed').addEventListener('click', () => this.toggleCompleted());
         this.getElementById('dark-mode-toggle').addEventListener('click', () => this.toggleDarkMode());
         this.getElementById('search-input').addEventListener('input', (e) => this.filterTasks(e.target.value));
@@ -1062,6 +1063,41 @@ class TakenlijstApp {
             messageDiv.style.transform = 'translateY(-20px)';
             setTimeout(() => messageDiv.remove(), 300);
         }, 3000);
+    }
+
+    /**
+     * Sync data with server
+     */
+    async syncData() {
+        const syncBtn = this.getElementById('sync-btn');
+        const originalText = syncBtn.textContent;
+        
+        try {
+            // Show loading state
+            syncBtn.textContent = '🔄 Syncing...';
+            syncBtn.disabled = true;
+            
+            // Reload data from server
+            await this.loadData();
+            this.renderTasks();
+            this.renderCategories();
+            
+            // Show success message
+            this.showMessage('Data gesynchroniseerd!', 'success');
+            
+            // Briefly show success state
+            syncBtn.textContent = '✅ Synced';
+            setTimeout(() => {
+                syncBtn.textContent = originalText;
+            }, 1500);
+            
+        } catch (error) {
+            console.error('Sync failed:', error);
+            this.showMessage('Synchronisatie mislukt', 'error');
+            syncBtn.textContent = originalText;
+        } finally {
+            syncBtn.disabled = false;
+        }
     }
 }
 
