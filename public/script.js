@@ -22,11 +22,34 @@ class TakenlijstApp {
      * Initialize the application
      */
     async init() {
+        // Check if still authenticated
+        await this.checkAuth();
+        
         this.setupEventListeners();
         this.loadDarkMode();
         this.initDragAndDrop();
         await this.loadData();
         this.setActiveCategory('algemeen');
+    }
+    
+    /**
+     * Check if user is still authenticated
+     */
+    async checkAuth() {
+        try {
+            const response = await fetch('/api/tasks', {
+                method: 'HEAD',
+                credentials: 'same-origin'
+            });
+            
+            if (response.status === 401) {
+                // Not authenticated - redirect to login
+                window.location.replace('/login.html');
+                return;
+            }
+        } catch (error) {
+            console.error('Auth check failed:', error);
+        }
     }
 
     /**
@@ -1094,15 +1117,15 @@ class TakenlijstApp {
                 credentials: 'same-origin'
             });
             
-            // 4) Redirect to login page
+            // 4) Redirect to login page and replace history
             setTimeout(() => {
-                window.location.href = '/login.html';
+                window.location.replace('/login.html');
             }, 1000);
             
         } catch (error) {
             console.error('Logout error:', error);
             // Fallback: redirect to login anyway
-            window.location.href = '/login.html';
+            window.location.replace('/login.html');
         }
     }
 
