@@ -17,9 +17,9 @@ let tasksCache = null;
 let cacheTimestamp = 0;
 const CACHE_DURATION = 30000; // 30 seconds cache
 
-// Detect if running on Render (ephemeral file system)
-const IS_RENDER = process.env.RENDER || process.env.NODE_ENV === 'production';
-console.log('🚀 Environment:', IS_RENDER ? 'RENDER (memory-only)' : 'LOCAL (file system)');
+// App is designed for Render.com deployment only
+const IS_RENDER = true; // Always use memory storage (Render has ephemeral file system)
+console.log('🚀 Environment: RENDER (memory-only storage)');
 
 app.use(compression()); // Enable gzip compression
 app.use(express.json({ limit: '10mb' }));
@@ -179,9 +179,9 @@ async function loadTasks() {
   }
 }
 
-// Save tasks to memory (and optionally file)
+// Save tasks to memory (Render-only deployment)
 async function saveTasks(data) {
-  console.log('💾 SAVE ATTEMPT - Environment:', IS_RENDER ? 'RENDER' : 'LOCAL');
+  console.log('💾 SAVE ATTEMPT - Render memory storage');
   
   try {
     // Clear cache when saving new data
@@ -192,26 +192,8 @@ async function saveTasks(data) {
     memoryTasks = data;
     console.log('💾 Memory save SUCCESS - Tasks stored in memory');
     
-    // Only attempt file write in local development
-    if (!IS_RENDER) {
-      const jsonData = JSON.stringify(data, null, 2);
-      console.log('💾 Writing to file - Data length:', jsonData.length);
-      
-      await fs.writeFile(DATA_FILE, jsonData, { encoding: 'utf8', flag: 'w' });
-      
-      // Force flush to disk
-      const fd = await fs.open(DATA_FILE, 'r+');
-      await fd.sync();
-      await fd.close();
-      
-      console.log('💾 File save SUCCESS - Data written and synced');
-      
-      // Verify file was actually written
-      const stats = await fs.stat(DATA_FILE);
-      console.log('💾 File verification - Size:', stats.size, 'Modified:', stats.mtime);
-    } else {
-      console.log('💾 Skipping file write on Render (ephemeral file system)');
-    }
+    // Render uses ephemeral file system - no file writes needed
+    console.log('💾 Render memory-only storage - No file writes needed');
     
   } catch (error) {
     console.error('💾 SAVE ERROR:', error);
@@ -784,9 +766,7 @@ async function startServer() {
     await loadTasks();
     
     app.listen(PORT, () => {
-      if (process.env.NODE_ENV !== 'production') {
-        console.log(`🌐 Takenlijst app draait op http://localhost:${PORT}`);
-      }
+      console.log(`🌐 Takenlijst app draait op port ${PORT} (Render deployment)`);
     });
     
   } catch (error) {

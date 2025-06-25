@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is "Takenlijst App" - a task management application with link preview functionality. The app runs as a Node.js/Express server serving a categorized task list with drag-and-drop functionality, automatic URL metadata extraction, and environment-aware data persistence. **CRITICAL: The app is deployed on Render.com, not run locally.**
+This is "Takenlijst App" - a task management application with link preview functionality. The app runs as a Node.js/Express server on Render.com serving a categorized task list with drag-and-drop functionality, automatic URL metadata extraction, and memory-based data persistence.
 
 ## Architecture
 
@@ -14,7 +14,7 @@ This is "Takenlijst App" - a task management application with link preview funct
 - **public/index.html**: Main application interface
 - **public/login.html**: Authentication interface
 - **public/style.css**: CSS with comprehensive styling and visual feedback
-- **data/tasks.json**: JSON data store (local development only - see deployment notes)
+- **data/tasks.json**: Legacy file structure (not used on Render)
 
 ### Key Features
 - **Session Authentication**: Basic auth with session management and automatic logout
@@ -22,19 +22,16 @@ This is "Takenlijst App" - a task management application with link preview funct
 - **Link Previews**: Automatic OpenGraph/Twitter metadata extraction from URLs in task text
 - **Advanced Drag & Drop**: SortableJS-based task reordering within/between categories
 - **Star System**: Favorites boost tasks to top position, unfavoriting preserves position
-- **Environment-Aware Persistence**: File storage locally, memory storage on Render
+- **Memory-Based Persistence**: All data stored in server memory (Render deployment)
 
-## Development Commands
+## Deployment
 
-### Local Development
-- `npm install` - Install dependencies (Express, Cheerio, Axios, CORS, compression, express-session)
-- `npm start` - Start production server on port 3000
-- `npm run dev` - Start development server with nodemon (recommended for development)
-
-### Deployment
+### Render.com Deployment
 - **Production Platform**: Render.com (automatic deployment on git push)
-- **Environment Detection**: `IS_RENDER = process.env.RENDER || process.env.NODE_ENV === 'production'`
-- **Data Storage**: Memory-only on Render (ephemeral file system), files in local development
+- **Dependencies**: `npm install` installs Express, Cheerio, Axios, CORS, compression, express-session
+- **Start Command**: `npm start` runs `node server.js`
+- **Data Storage**: Memory-only storage (`memoryTasks` variable)
+- **File System**: Ephemeral - all files reset on deployment
 
 ### Authentication
 - **Credentials**: Set via `AUTH_USER` and `AUTH_PASS` environment variables
@@ -90,18 +87,17 @@ This is "Takenlijst App" - a task management application with link preview funct
 ## Critical Development Notes
 
 ### Render.com Deployment Architecture
-- **CRITICAL**: App runs on Render.com with ephemeral file system
-- **Data Persistence**: Uses memory storage on Render (`memoryTasks` variable)
-- **File writes on Render are temporary** and lost on restart/deployment
-- **Environment Detection**: `IS_RENDER` flag determines storage method
-- **Local Development**: Uses file system (`data/tasks.json`) 
-- **Production**: Uses memory-only storage for persistence between requests
+- **CRITICAL**: App runs exclusively on Render.com with ephemeral file system
+- **Data Persistence**: Uses ONLY memory storage (`memoryTasks` variable)
+- **File System**: Completely ephemeral - no file persistence available
+- **Environment**: `IS_RENDER = true` (always memory-only)
+- **Data Loss**: Memory resets on each deployment (git push)
 
-### Data Persistence & Critical Fixes
-- **saveTasks() Function**: Environment-aware saving with memory + file strategies
-- **loadTasks() Function**: Prioritizes memory storage on Render over file reads
-- **Cache Management**: 30-second cache (`tasksCache`) for performance
-- **NEVER assume file persistence on Render** - all data is memory-based
+### Data Persistence Implementation
+- **saveTasks() Function**: Memory-only storage with comprehensive logging
+- **loadTasks() Function**: Reads from memory (`memoryTasks`) with fallback to defaults
+- **Cache Management**: 30-second cache (`tasksCache`) for performance optimization
+- **NEVER rely on file system** - all data exists only in server memory
 
 ### Star/Favorite System Implementation
 - **Star ON**: Task jumps to `sortOrder = 1`, other tasks shift down (+1)
@@ -139,10 +135,11 @@ This is "Takenlijst App" - a task management application with link preview funct
 - **Performance**: Async extraction without blocking task creation
 
 ### Logging & Debugging
-- **Environment Logging**: Clear indicators for Render vs Local environments
+- **Environment Logging**: Always shows "RENDER (memory-only storage)"
 - **Save Operations**: Comprehensive logging with 💾 emoji prefix
 - **Authentication**: Session state and redirect logging
 - **Error Handling**: Detailed error logs for troubleshooting
+- **Memory Operations**: Clear logging of memory storage operations
 
 ### Important Git Workflow
 - **Auto-Deploy**: Every `git push` triggers automatic Render deployment
