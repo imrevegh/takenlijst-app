@@ -252,7 +252,7 @@ header h1 {
     border-radius: var(--radius);
     background: var(--bg-secondary);
     color: var(--text-primary);
-    font-size: 14px;
+    font-size: 16px; /* iOS requires 16px minimum to prevent zoom */
     transition: var(--transition);
 }
 
@@ -779,7 +779,7 @@ select, input[type="text"] {
     border-radius: var(--radius);
     background: var(--bg-secondary);
     color: var(--text-primary);
-    font-size: 14px;
+    font-size: 16px; /* iOS requires 16px minimum to prevent zoom */
     transition: var(--transition);
 }
 
@@ -861,6 +861,19 @@ select:focus, input[type="text"]:focus {
 
 /* MOBILE-SPECIFIC OVERRIDES */
 @media (max-width: 768px) {
+    /* Fix iOS input typing issues */
+    input, textarea, select {
+        font-size: 16px !important; /* Prevent iOS zoom */
+        -webkit-appearance: none; /* Remove iOS styling */
+        border-radius: 8px;
+    }
+    
+    /* Ensure inputs are tappable */
+    input:focus, textarea:focus {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+    }
+    
     /* Convert desktop layout to mobile app layout */
     .container {
         flex-direction: column;
@@ -920,6 +933,12 @@ select:focus, input[type="text"]:focus {
     }
     
     /* Mobile category form - bigger touch targets */
+    .category-form input[type="text"] {
+        font-size: 16px; /* Prevent iOS zoom */
+        -webkit-appearance: none; /* Remove iOS styling */
+        min-height: 44px; /* Better touch target */
+    }
+    
     .category-form input[type="color"] {
         width: 48px;
         height: 44px;
@@ -956,7 +975,8 @@ select:focus, input[type="text"]:focus {
     
     .task-form textarea {
         min-height: 60px;
-        font-size: 1rem;
+        font-size: 16px; /* Prevent iOS zoom */
+        -webkit-appearance: none; /* Remove iOS styling */
         padding: 16px;
     }
     
@@ -980,7 +1000,9 @@ select:focus, input[type="text"]:focus {
     /* Mobile Search */
     .search-section input {
         padding: 16px;
-        font-size: 1rem;
+        font-size: 16px; /* Prevent iOS zoom */
+        -webkit-appearance: none; /* Remove iOS styling */
+        border-radius: 8px;
     }
     
     /* Mobile Tasks - compact but readable */

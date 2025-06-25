@@ -983,7 +983,12 @@ class TakenlijstApp {
      * @param {KeyboardEvent} e - Keyboard event
      */
     handleKeydown(e) {
-        // Global keyboard shortcuts
+        // Don't interfere with typing in input fields
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+            return; // Let input fields handle their own events
+        }
+        
+        // Global keyboard shortcuts (only when not typing)
         if (e.ctrlKey || e.metaKey) {
             switch(e.key) {
                 case 'n':
