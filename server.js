@@ -5,6 +5,7 @@ const cheerio = require('cheerio');
 const fs = require('fs').promises;
 const path = require('path');
 const compression = require('compression');
+const basicAuth = require('express-basic-auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +14,13 @@ const DATA_FILE = path.join(__dirname, 'data', 'tasks.json');
 app.use(compression()); // Enable gzip compression
 app.use(cors());
 app.use(express.json());
+
+// Basic Authentication
+app.use(basicAuth({
+  users: { [process.env.AUTH_USER || 'admin']: process.env.AUTH_PASS || 'password' },
+  challenge: true,
+  realm: 'Takenlijst App'
+}));
 
 // Serve static files with appropriate caching
 app.use(express.static('public', {
